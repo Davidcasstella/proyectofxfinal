@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextArea?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controlador.ControladorBienvenida">
+    <children>
+        <!-- Contenedor HBox para Logo y Título -->
+        <HBox layoutX="120" layoutY="20" spacing="10">
+            <!-- Logo -->
+            <ImageView fx:id="logo" fitHeight="80" fitWidth="80" />
+            <!-- Título de la Fundación -->
+            <Label text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-size: 30px; -fx-font-weight: bold;" />
+        </HBox>
+        
+        <!-- Slogan -->
+        <Label text="Cuidando vidas, creando futuros" layoutX="210" layoutY="60" style="-fx-font-size: 18px; color: #777;" />
+
+        <!-- Descripción Quiénes somos -->
+        <Label text="¿Quiénes somos?" layoutX="120" layoutY="100" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <TextArea text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a ornare quam, eget pellentesque felis. Praesent cursus, quam non eleifend vehicula, mi ante feugiat erat, in mollis diam sapien vel ligula. Suspendisse justo metus, congue ut vestibulum in, mattis in velit. Nam eu auctor est. Nunc nisi dolor, consectetur vitae dignissim ut, maximus eu tellus. Ut auctor consectetur vehicula. Duis suscipit velit sit amet leo pellentesque, et hendrerit odio efficitur."
+                  layoutX="120" layoutY="130" prefHeight="150" prefWidth="550" wrapText="true" style="-fx-font-size: 14px; -fx-background-color: #f0f0f0; -fx-border-color: #ccc;" editable="false"/>
+
+        <!-- Descripción Quieres formar parte -->
+        <Label text="¿Quieres hacer parte de nuestro equipo?" layoutX="120" layoutY="300" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        
+        <!-- Usamos un TextArea para mostrar el párrafo largo -->
+        <TextArea text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a ornare quam, eget pellentesque felis. Praesent cursus, quam non eleifend vehicula, mi ante feugiat erat, in mollis diam sapien vel ligula. Suspendisse justo metus, congue ut vestibulum in, mattis in velit. Nam eu auctor est. Nunc nisi dolor, consectetur vitae dignissim ut, maximus eu tellus. Ut auctor consectetur vehicula. Duis suscipit velit sit amet leo pellentesque, et hendrerit odio efficitur."
+                  layoutX="120" layoutY="330" prefHeight="150" prefWidth="550" wrapText="true" style="-fx-font-size: 14px; -fx-background-color: #f0f0f0; -fx-border-color: #ccc;" editable="false"/>
+
+        <!-- Botones de inicio de sesión y creación de cuenta -->
+        <HBox layoutX="250" layoutY="500" spacing="20" alignment="CENTER">
+            <Button text="Iniciar Sesión" fx:id="btnLogin" onAction="#switchToLogin" style="-fx-font-size: 14px; -fx-padding: 10px 20px;" />
+            <Button text="Crear Cuenta" fx:id="btnCreateAccount" onAction="#switchToCreateAccount" style="-fx-font-size: 14px; -fx-padding: 10px 20px;" />
+        </HBox>
+
+        <!-- Botón para recargar la página -->
+        <Button layoutX="20" layoutY="20" text="↻" onAction="#reloadPage" style="-fx-font-size: 14px; -fx-padding: 2px; -fx-min-width: 30px; -fx-min-height: 30px;" />
+
+        <!-- Mensaje de agradecimiento -->
+        <Label text="¡Gracias por apoyarnos, miles de animalitos te lo agradecerán siempre!" layoutX="160" layoutY="570" style="-fx-font-size: 14px; color: #777;" />
+
+        <!-- Imagen al lado derecho (más grande) -->
+        <ImageView fx:id="sideImage" layoutX="750" layoutY="90" fitHeight="500" fitWidth="500" preserveRatio="true" />
+    </children>
+</AnchorPane>
