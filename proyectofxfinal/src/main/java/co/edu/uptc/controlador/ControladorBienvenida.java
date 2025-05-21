@@ -10,7 +10,7 @@ import javafx.scene.image.ImageView;
 public class ControladorBienvenida {
 
     @FXML
-    private ImageView logo;  // Referencia al ImageView del logo
+    private ImageView logo;  // Referencia al ImageView del logoo
 
     @FXML
     private ImageView sideImage;  // Referencia al ImageView de la imagen en la vista
