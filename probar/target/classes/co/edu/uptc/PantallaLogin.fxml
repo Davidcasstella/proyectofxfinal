@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Pos?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uptc.controlador.ControladorLogin" style="-fx-background-color: #f4f4f4; -fx-padding: 20px;">
+    
+    <!-- Título -->
+    <Label text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #333333; -fx-padding: 10px;" layoutX="650" layoutY="0"/>
+
+    <!-- Contenedor para la imagen -->
+    <AnchorPane layoutX="50" layoutY="80">
+        <!-- Imagen de fondo ocupando la mitad de la pantalla -->
+        <ImageView fx:id="imageView" fitWidth="520" fitHeight="520" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);" layoutX="0" layoutY="0">
+            <image>
+                <Image url="file:/mnt/data/4dd931c8-1b2d-4a4c-86ac-20d0e9d09397.png" />
+            </image>
+        </ImageView>
+    </AnchorPane>
+
+    <!-- Contenedor para el formulario -->
+   <!-- Contenedor para el formulario -->
+    <AnchorPane layoutX="760" layoutY="80">
+        <VBox spacing="20" alignment="CENTER" style="-fx-background-color: white; -fx-border-radius: 15px; -fx-background-radius: 15px; -fx-padding: 40px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);" 
+            minWidth="300" maxWidth="350" minHeight="350" maxHeight="550"> <!-- Disminuir tamaño aquí -->
+            
+            <!-- Título del formulario -->
+            <Label text="Iniciar Sesión" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+
+            <!-- Correo electrónico -->
+            <VBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Correo electrónico" style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+                <TextField fx:id="emailField" promptText="Correo electrónico" style="-fx-pref-width: 300px; -fx-background-radius: 20px; -fx-border-radius: 20px; -fx-border-color: #cccccc; -fx-padding: 10px; -fx-font-size: 14px;" onKeyReleased="#validateEmail"/>
+                <Label fx:id="emailErrorLabel" style="-fx-font-size: 12px; -fx-text-fill: red;" />
+            </VBox>
+
+            <!-- Contraseña -->
+            <VBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Contraseña" style="-fx-font-size: 14px; -fx-text-fill: #555555;" />
+                <PasswordField fx:id="passwordField" promptText="Contraseña" style="-fx-pref-width: 300px; -fx-background-radius: 20px; -fx-border-radius: 20px; -fx-border-color: #cccccc; -fx-padding: 10px; -fx-font-size: 14px;" onKeyReleased="#validatePassword"/>
+                <Label fx:id="passwordErrorLabel" style="-fx-font-size: 12px; -fx-text-fill: red;" />
+            </VBox>
+
+            <!-- Recordar sesión -->
+            <CheckBox fx:id="rememberMeCheckBox" text="Recordar sesión" style="-fx-font-size: 12px; -fx-text-fill: #777777;"/>
+
+            <!-- Botón Iniciar sesión -->
+            <Button fx:id="loginButton" text="Iniciar sesión" style="-fx-background-color: #000000; -fx-text-fill: white; -fx-pref-width: 300px; -fx-background-radius: 20px; -fx-padding: 10px; -fx-font-size: 16px;" onAction="#handleLogin"/>
+
+            <!-- Enlace Olvidaste tu contraseña -->
+            <Hyperlink fx:id="forgotPasswordLink" text="Olvidaste tu contraseña?" onAction="#handleForgotPassword" style="-fx-font-size: 12px; -fx-text-fill: #0066cc;" />
+
+            <!-- Sección para Google -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button fx:id="googleButton" text="Continuar con Google" onAction="#SiguientePa" style="-fx-background-color:rgb(48, 120, 221); -fx-text-fill: white; -fx-pref-width: 300px; -fx-background-radius: 20px; -fx-padding: 10px; -fx-font-size: 16px;" />
+            </HBox>
+
+            <!-- Enlace de registro -->
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-font-size: 12px; -fx-text-fill: #777777;">
+                <Label text="¿No tienes una cuenta?" />
+                <Hyperlink text="Regístrate" style="-fx-text-fill: #0066cc;" />
+            </HBox>
+        </VBox>
+    </AnchorPane>
+     <!-- Botón para regresar a la pantalla bienvenido -->
+    <Button layoutX="5" layoutY="20" text="←" onAction="#Regresar" style="-fx-font-size: 14px; -fx-padding: 2px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color:rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;"/>
+
+        <!-- Botón para ir a la pantalla siguiente pantalla -->
+         <Button layoutX="40" layoutY="20" text="→" onAction="#SiguienteP" style="-fx-font-size: 14px; -fx-padding: 2px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color:rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;"/>
+
+    <!-- Botón para recargar la página, ubicado en la esquina superior izquierda -->
+    <Button layoutX="75" layoutY="20" text="↻" onAction="#RegarcarLogin" style="-fx-font-size: 14px; -fx-padding: 2px; -fx-min-width: 30px; -fx-min-height: 30px;"/>
+</AnchorPane>
