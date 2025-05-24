@@ -1,205 +1,278 @@
 package co.edu.uptc.controlador;
 
-
 import java.io.IOException;
 
 import co.edu.uptc.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javafx.scene.layout.StackPane;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
 
 public class ControladorLogin {
 
-    @FXML
-    private TextField emailField;
-
-    @FXML
-    private PasswordField passwordField;
-
-    @FXML
-    private CheckBox rememberMeCheckBox;
-
-    @FXML
-    private Button loginButton;
-
-    @FXML
-    private Label emailErrorLabel; // Nuevo label para mostrar el error del correo
-
-    @FXML
-    private Label passwordErrorLabel; // Nuevo label para mostrar el error de la contraseña
-
-    @FXML
-    private ImageView imageView; // ImageView para la imagen en el FXML
-
-    @FXML
-    private StackPane root; // El StackPane que contiene todo
-
-    // Ruta de la imagen
-    private static final String IMAGE_PATH = "src\\main\\resources\\co\\edu\\uptc\\imagenes\\images (1).jpg";  // Reemplaza con la ruta correcta
-
-    // Validar correo electrónico
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        return email.matches(emailRegex);
-    }
-
-    // Validar contraseña (mínimo 6 caracteres, al menos una letra y un número)
-    private boolean isValidPassword(String password) {
-        return password.length() >= 6 && password.matches(".*[A-Za-z].*") && password.matches(".*\\d.*");
-    }
-
-    // Manejar el inicio de sesión
-    @FXML
-    public void handleLogin(ActionEvent event) throws IOException {
-        String email = emailField.getText();
-        String password = passwordField.getText();
-
-        // Validar el correo electrónico
-        if (email.isEmpty()) {
-            showError(emailField, "El email es requerido.", emailErrorLabel);
-            return;
-        } else if (!isValidEmail(email)) {
-            showError(emailField, "El email no es válido.", emailErrorLabel);
-            return;
-        } else {
-            resetFieldStyle(emailField, emailErrorLabel);
-        }
-
-        // Validar la contraseña
-        if (password.isEmpty()) {
-            showError(passwordField, "La contraseña es requerida.", passwordErrorLabel);
-            return;
-        } else if (!isValidPassword(password)) {
-            showError(passwordField, "La contraseña debe tener al menos 6 caracteres, una letra y un número.", passwordErrorLabel);
-            return;
-        } else {
-            resetFieldStyle(passwordField, passwordErrorLabel);
-        }
-
-        // Si las validaciones son exitosas
-        showAlert("Éxito", "Inicio de sesión exitoso.", AlertType.INFORMATION);
-        SiguientePa();
-       
-    }
-
+    // Login fields
+    @FXML private TextField emailField;
+    @FXML private PasswordField passwordField;
+    @FXML private CheckBox rememberMeCheckBox;
+    @FXML private Button loginButton;
+    @FXML private Label emailErrorLabel;
+    @FXML private Label passwordErrorLabel;
     
+    // Register fields
+    @FXML private VBox loginForm;
+    @FXML private VBox registerForm;
+    @FXML private Label tabLogin;
+    @FXML private Label tabRegister;
 
-    // Mostrar error en el campo de texto y en el label correspondiente
-    private void showError(TextField field, String errorMessage, Label errorLabel) {
-        field.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-        errorLabel.setText(errorMessage);
-        errorLabel.setTextFill(javafx.scene.paint.Color.RED);
+    @FXML private TextField fullNameField;
+    @FXML private TextField emailRegisterField;
+    @FXML private TextField recoveryField;
+    @FXML private PasswordField passwordRegisterField;
+    @FXML private PasswordField confirmPasswordField;
+    @FXML private Button registerButton;
+
+    @FXML private ImageView imageView;
+
+    // Ruta imagen, ajústala a tu proyecto
+    private static final String IMAGE_PATH = "/co/edu/uptc/imagenes/images (1).jpg";
+
+    @FXML
+    public void initialize() {
+        // Cargar imagen
+        Image img = new Image(getClass().getResourceAsStream(IMAGE_PATH));
+        imageView.setImage(img);
+
+        // Inicial: mostrar formulario login
+        mostrarLogin();
     }
 
-    private void showError(PasswordField field, String errorMessage, Label errorLabel) {
-        field.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-        errorLabel.setText(errorMessage);
-        errorLabel.setTextFill(javafx.scene.paint.Color.RED);
+    // Mostrar formulario login y ocultar registro
+    @FXML
+    private void mostrarLogin() {
+        tabLogin.setStyle("-fx-text-fill: #0066cc; -fx-font-weight: bold;");
+        tabRegister.setStyle("-fx-text-fill: #999999; -fx-font-weight: normal;");
+        loginForm.setVisible(true);
+        loginForm.setManaged(true);
+        registerForm.setVisible(false);
+        registerForm.setManaged(false);
+        limpiarErroresLogin();
+        limpiarErroresRegistro();
     }
 
-    // Restablecer estilo del campo de texto y del label de error
-    private void resetFieldStyle(TextField field, Label errorLabel) {
-        field.setStyle("-fx-border-color: transparent;");
-        errorLabel.setText("");
+    // Mostrar formulario registro y ocultar login
+    @FXML
+    private void mostrarRegistro() {
+        tabRegister.setStyle("-fx-text-fill: #0066cc; -fx-font-weight: bold;");
+        tabLogin.setStyle("-fx-text-fill: #999999; -fx-font-weight: normal;");
+        registerForm.setVisible(true);
+        registerForm.setManaged(true);
+        loginForm.setVisible(false);
+        loginForm.setManaged(false);
+        limpiarErroresLogin();
+        limpiarErroresRegistro();
     }
 
-    private void resetFieldStyle(PasswordField field, Label errorLabel) {
-        field.setStyle("-fx-border-color: transparent;");
-        errorLabel.setText("");
+    // Validar email (simple)
+    private boolean isValidEmail(String email) {
+        return email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
     }
 
-    // Mostrar alertas de error o éxito
-    private void showAlert(String title, String message, AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    // Validar contraseña (mínimo 6 chars, al menos una letra y un número)
+    private boolean isValidPassword(String password) {
+        return password.length() >= 6 &&
+               password.matches(".*[A-Za-z].*") &&
+               password.matches(".*\\d.*");
     }
 
-    // Validación en tiempo real del correo electrónico
+    // Validación en tiempo real email login
     @FXML
     private void validateEmail(KeyEvent event) {
         String email = emailField.getText();
         if (email.isEmpty()) {
-            emailField.setStyle("-fx-border-color: red;");
-            emailErrorLabel.setText("El email es requerido.");
-            emailErrorLabel.setTextFill(javafx.scene.paint.Color.RED);
+            setError(emailField, emailErrorLabel, "El email es requerido.");
         } else if (!isValidEmail(email)) {
-            emailField.setStyle("-fx-border-color: red;");
-            emailErrorLabel.setText("El email no es válido.");
-            emailErrorLabel.setTextFill(javafx.scene.paint.Color.RED);
+            setError(emailField, emailErrorLabel, "El email no es válido.");
         } else {
-            emailField.setStyle("-fx-border-color: green;");
-            emailErrorLabel.setText("");
+            clearError(emailField, emailErrorLabel);
         }
-        
     }
 
-    // Validación en tiempo real de la contraseña
+    // Validación en tiempo real password login
     @FXML
     private void validatePassword(KeyEvent event) {
         String password = passwordField.getText();
         if (password.isEmpty()) {
-            passwordField.setStyle("-fx-border-color: red;");
-            passwordErrorLabel.setText("La contraseña es requerida.");
-            passwordErrorLabel.setTextFill(javafx.scene.paint.Color.RED);
+            setError(passwordField, passwordErrorLabel, "La contraseña es requerida.");
         } else if (!isValidPassword(password)) {
-            passwordField.setStyle("-fx-border-color: red;");
-            passwordErrorLabel.setText("Debe tener al menos 6 caracteres, una letra y un número.");
-            passwordErrorLabel.setTextFill(javafx.scene.paint.Color.RED);
+            setError(passwordField, passwordErrorLabel, "Debe tener al menos 6 caracteres, una letra y un número.");
         } else {
-            passwordField.setStyle("-fx-border-color: green;");
-            passwordErrorLabel.setText("");
+            clearError(passwordField, passwordErrorLabel);
         }
     }
 
-    // Manejar el enlace "Olvidaste tu contraseña"
+    // Manejar login
     @FXML
-    public void handleForgotPassword() {
-        showAlert("Recuperación de contraseña", "Por favor, sigue las instrucciones para recuperar tu contraseña.", AlertType.INFORMATION);
+    public void handleLogin(ActionEvent event) throws IOException {
+        String email = emailField.getText().trim();
+        String password = passwordField.getText();
+
+        if (email.isEmpty()) {
+            setError(emailField, emailErrorLabel, "El email es requerido.");
+            return;
+        } else if (!isValidEmail(email)) {
+            setError(emailField, emailErrorLabel, "El email no es válido.");
+            return;
+        } else {
+            clearError(emailField, emailErrorLabel);
+        }
+
+        if (password.isEmpty()) {
+            setError(passwordField, passwordErrorLabel, "La contraseña es requerida.");
+            return;
+        } else if (!isValidPassword(password)) {
+            setError(passwordField, passwordErrorLabel, "Debe tener al menos 6 caracteres, una letra y un número.");
+            return;
+        } else {
+            clearError(passwordField, passwordErrorLabel);
+        }
+
+        // TODO: Lógica real login
+        mostrarAlerta("Éxito", "Inicio de sesión exitoso.", AlertType.INFORMATION);
+        // Cambiar pantalla o lo que quieras
+        App.setRoot("tercerapantalla");
     }
 
-    // Método que se llama al iniciar la aplicación para cargar la imagen
+    // Manejar registro
     @FXML
-    public void initialize() {
-        Image image = new Image("file:" + IMAGE_PATH); // Cargar la imagen desde el archivo
-        imageView.setImage(image); // Establecer la imagen en el ImageView
+    private void handleRegister() {
+        String nombre = fullNameField.getText().trim();
+        String email = emailRegisterField.getText().trim();
+        String recovery = recoveryField.getText().trim();
+        String pass = passwordRegisterField.getText();
+        String confirmPass = confirmPasswordField.getText();
+
+        if (nombre.isEmpty()) {
+            mostrarAlerta("Error", "El nombre completo es obligatorio.", AlertType.ERROR);
+            return;
+        }
+        if (email.isEmpty() || !isValidEmail(email)) {
+            mostrarAlerta("Error", "Ingrese un correo válido.", AlertType.ERROR);
+            return;
+        }
+        if (recovery.isEmpty()) {
+            mostrarAlerta("Error", "El correo o número de recuperación es obligatorio.", AlertType.ERROR);
+            return;
+        }
+        if (pass.isEmpty() || !isValidPassword(pass)) {
+            mostrarAlerta("Error", "Contraseña inválida. Debe tener al menos 6 caracteres, una letra y un número.", AlertType.ERROR);
+            return;
+        }
+        if (!pass.equals(confirmPass)) {
+            mostrarAlerta("Error", "Las contraseñas no coinciden.", AlertType.ERROR);
+            return;
+        }
+
+        // TODO: Guardar registro en base de datos o backend
+
+        mostrarAlerta("Éxito", "Registro exitoso.", AlertType.INFORMATION);
+        limpiarCamposRegistro();
+        mostrarLogin();
     }
-     @FXML
+
+    // Mensajes de alerta
+    private void mostrarAlerta(String titulo, String mensaje, AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    // Mostrar mensaje error y poner borde rojo
+    private void setError(TextField field, Label label, String mensaje) {
+        field.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+        label.setText(mensaje);
+        label.setTextFill(javafx.scene.paint.Color.RED);
+    }
+
+    private void clearError(TextField field, Label label) {
+        field.setStyle("-fx-border-color: transparent;");
+        label.setText("");
+    }
+
+    private void limpiarErroresLogin() {
+        clearError(emailField, emailErrorLabel);
+        clearError(passwordField, passwordErrorLabel);
+    }
+
+    private void limpiarErroresRegistro() {
+        // Aquí podrías limpiar errores específicos del registro si los agregas
+    }
+
+    private void limpiarCamposRegistro() {
+        fullNameField.clear();
+        emailRegisterField.clear();
+        recoveryField.clear();
+        passwordRegisterField.clear();
+        confirmPasswordField.clear();
+    }
+
+    // Manejar enlace "Olvidaste tu contraseña"
+    @FXML
+    private void handleForgotPassword() {
+        mostrarAlerta("Recuperación de contraseña", "Por favor, sigue las instrucciones para recuperar tu contraseña.", AlertType.INFORMATION);
+    }
+
+    // Manejar botón Google
+    @FXML
+    private void continuarConGoogle() {
+        mostrarAlerta("Google", "Funcionalidad para continuar con Google aún no implementada.", AlertType.INFORMATION);
+    }
+
+    // Navegación botones (si los tienes en pantalla)
+    @FXML
     private void RegarcarLogin() throws IOException {
+        App.setRoot("PantallaLogin");
+    }
+
+    @FXML
+    private void Regresar() throws IOException {
+        App.setRoot("PantallaBienvenido");
+    }
+
+    @FXML
+    private void SiguienteP() throws IOException {
+        App.setRoot("tercerapantalla");
+    }
+
+    @FXML
+    private void SiguientePa() throws IOException {
+        App.setRoot("tercerapantalla");
+    }
+
+
+
+      @FXML
+    private void Siguiente() throws IOException {
         // Recarga la página actual
         App.setRoot("PantallaLogin");  // Recargar la vista de la pantalla principal
     }
-     @FXML
-    private void Regresar() throws IOException {
+      @FXML
+    private void reloadPage() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PantallaLogin");  // Recargar la vista de la pantalla principal
+    }
+
+       @FXML
+    private void Antes() throws IOException {
         // Recarga la página actual
         App.setRoot("PantallaBienvenido");  // Recargar la vista de la pantalla principal
     }
-    
 
-     @FXML
-    private void SiguienteP() throws IOException {
-        // Recarga la página actual
-        App.setRoot("tercerapantalla");  // Recargar la vista de la pantalla principal
-    }
-     @FXML
-    private void SiguientePa() throws IOException {
-        // Recarga la página actual
-        App.setRoot("tercerapantalla");  // Recargar la vista de la pantalla principal
-    }
-   
+
+    
 }
