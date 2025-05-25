@@ -1,5 +1,8 @@
 package co.edu.uptc.controlador;
 
+import java.io.IOException;
+
+import co.edu.uptc.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -75,5 +78,23 @@ public class ControladorReceperacionDos {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+
+       @FXML
+    private void Siguienteee() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PatallaCodigoRecuperaciontres");  // Recargar la vista de la pantalla principal
+    }
+    
+       @FXML
+    private void reloadPageee() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PatallaCodigoRecuperacionDos");  // Recargar la vista de la pantalla principal
+    }
+        @FXML
+    private void Antesss() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PatallaCodigoRecuperacion");  // Recargar la vista de la pantalla principal
     }
 }

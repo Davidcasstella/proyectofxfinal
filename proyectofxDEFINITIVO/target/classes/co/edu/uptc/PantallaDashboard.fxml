@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15" xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uptc.controlador.ControladorDashboard">
+
+    <Label text="Donantes:"/>
+    <Label fx:id="labelDonantes" text="0"/>
+
+    <Label text="Animales:"/>
+    <Label fx:id="labelAnimales" text="0"/>
+
+    <Label text="Donaciones:"/>
+    <Label fx:id="labelDonaciones" text="0.00"/>
+
+    <LineChart fx:id="graficaResumen" title="Resumen Mensual" prefHeight="200" prefWidth="400">
+        <xAxis>
+            <CategoryAxis label="Día"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Monto"/>
+        </yAxis>
+    </LineChart>
+
+    <Label text="Actividad Reciente"/>
+    <ListView fx:id="listaActividadReciente"/>
+
+</VBox>

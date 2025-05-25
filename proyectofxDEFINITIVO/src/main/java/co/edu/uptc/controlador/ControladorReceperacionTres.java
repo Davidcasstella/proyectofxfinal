@@ -1,5 +1,8 @@
 package co.edu.uptc.controlador;
 
+import java.io.IOException;
+
+import co.edu.uptc.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -93,4 +96,22 @@ public class ControladorReceperacionTres {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+      @FXML
+    private void Siguienteeee() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PantallaCreaTuContraseña");  // Recargar la vista de la pantalla principal
+    }
+    
+       @FXML
+    private void reloadPageeee() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PatallaCodigoRecuperaciontres");  // Recargar la vista de la pantalla principal
+    }
+        @FXML
+    private void Antessss() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PatallaCodigoRecuperacionDos");  // Recargar la vista de la pantalla principal
+    }
+
 }

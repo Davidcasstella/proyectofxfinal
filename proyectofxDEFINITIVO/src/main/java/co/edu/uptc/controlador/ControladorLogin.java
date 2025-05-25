@@ -259,7 +259,7 @@ public class ControladorLogin {
       @FXML
     private void Siguiente() throws IOException {
         // Recarga la página actual
-        App.setRoot("PantallaLogin");  // Recargar la vista de la pantalla principal
+        App.setRoot("PatallaCodigoRecuperacion");  // Recargar la vista de la pantalla principal
     }
       @FXML
     private void reloadPage() throws IOException {

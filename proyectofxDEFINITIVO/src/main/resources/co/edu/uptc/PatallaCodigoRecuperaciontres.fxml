@@ -82,6 +82,12 @@
 
             <!-- Línea separadora -->
             <Label style="-fx-background-color: #dcdcdc; -fx-pref-height: 1px; -fx-pref-width: 800px;" />
+            <Button text="←" onAction="#Antessss" 
+        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+        <Button text="→" onAction="#Siguienteeee" 
+        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+        <Button text="↻" onAction="#reloadPageeee" 
+        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px;" />
 
         </VBox>
 

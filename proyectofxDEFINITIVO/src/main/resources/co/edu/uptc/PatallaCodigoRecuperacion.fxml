@@ -31,7 +31,17 @@
             <Button fx:id="nextButton" text="Siguiente" style="-fx-background-color: #bfbfbf; -fx-text-fill: black; -fx-padding: 8px 20px; -fx-background-radius: 15px; -fx-font-size: 14px;" />
         </HBox>
 
+        
         <Label style="-fx-background-color: #dcdcdc; -fx-pref-height: 1px; -fx-pref-width: 900px;" />
+        <!-- Botón para ir a la pantalla siguiente pantalla -->
+
+        <Button text="←" onAction="#Antess" 
+        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+        <Button text="→" onAction="#Siguientee" 
+        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+        <Button text="↻" onAction="#reloadPagee" 
+        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px;" />
+        
     </VBox>
 
 </AnchorPane>
