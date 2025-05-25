@@ -9,9 +9,20 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uptc.controlador.ControladorReceperacionDos" style="-fx-background-color: #f4f4f4; -fx-padding: 30px;">
 
+    <!-- Botones en esquina superior izquierda -->
+    <HBox spacing="10" alignment="CENTER_LEFT" 
+          AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0">
+        <Button text="←" onAction="#Antesss" 
+                style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+        <Button text="→" onAction="#Siguienteee" 
+                style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+        <Button text="↻" onAction="#reloadPageee" 
+                style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px;" />
+    </HBox>
+
     <!-- Pantalla principal (tarjeta) -->
     <VBox fx:id="mainCard" spacing="20" style="-fx-background-color: #e9e9e9; -fx-background-radius: 15px; -fx-padding: 40px;" alignment="CENTER" 
-        AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" prefHeight="220" prefWidth="900">
+          AnchorPane.topAnchor="50.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" prefHeight="220" prefWidth="900">
 
         <HBox spacing="30" alignment="CENTER_LEFT" prefWidth="900">
 
@@ -40,19 +51,12 @@
 
         <!-- Línea separadora -->
         <Label style="-fx-background-color: #dcdcdc; -fx-pref-height: 1px; -fx-pref-width: 900px;" />
-         <!-- Botón para ir a la pantalla siguiente pantalla -->
 
-        <Button text="←" onAction="#Antesss" 
-        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
-        <Button text="→" onAction="#Siguienteee" 
-        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
-        <Button text="↻" onAction="#reloadPageee" 
-        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px;" />
     </VBox>
 
     <!-- Panel modal oculto al inicio -->
     <AnchorPane fx:id="modalPane" style="-fx-background-color: rgba(0,0,0,0.4);" visible="false" managed="false"
-        AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
         <VBox spacing="10" alignment="TOP_LEFT" style="-fx-background-color: white; -fx-padding: 30px; -fx-background-radius: 10px;"
               layoutX="250" layoutY="220" prefWidth="400" prefHeight="200">
@@ -66,7 +70,7 @@
                    style="-fx-font-size: 14px; -fx-text-fill: gray;" wrapText="true" />
 
             <Button fx:id="modalNextButton" text="Siguiente" style="-fx-background-color: #bfbfbf; -fx-text-fill: black; -fx-padding: 8px 20px; -fx-background-radius: 15px; -fx-font-size: 14px;" maxWidth="100" alignment="CENTER" />
-       
+
         </VBox>
     </AnchorPane>
 

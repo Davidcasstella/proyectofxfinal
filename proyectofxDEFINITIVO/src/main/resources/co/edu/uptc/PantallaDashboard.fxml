@@ -11,10 +11,10 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.XYChart?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
@@ -22,24 +22,45 @@
             fx:controller="co.edu.uptc.controlador.ControladorDashboard"
             prefWidth="900" prefHeight="600" style="-fx-background-color: #FAF9F9;">
 
-    <!-- Menú lateral izquierdo -->
+    <!-- Menú lateral izquierdo con StackPane para superponer botones -->
     <left>
-        <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 20;">
-            <Label text="FUNDACIÓN" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
-            <Label text="GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
-            <Separator />
-            <VBox spacing="15" style="-fx-padding: 10 0 0 0;">
-                <Label text="Explora" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
-                <VBox spacing="8">
-                    <Button text="Principal" style="-fx-background-color: #E9E9E9; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
-                    <Button text="Donantes" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
-                    <Button text="Animales" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
-                    <Button text="Asignaciones" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
-                    <Button text="Reportes" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
-                    <Button text="Comentarios" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
+        <StackPane style="-fx-background-color: white;">
+
+            <!-- Menú lateral con padding reducido arriba para que quede más cerca de los botones -->
+            <VBox spacing="10" style="-fx-padding: 10 20 20 20;">
+        <!-- Botones superpuestos arriba izquierda con margen para que no queden pegados al borde -->
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 8 0 0 8;" StackPane.alignment="TOP_LEFT">
+                <Button text="←" onAction="#Antesssss"
+                        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; 
+                               -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+                <Button text="→" onAction="#Siguienteeeee"
+                        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; 
+                               -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+                <Button text="↻" onAction="#reloadPageeeee"
+                        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px;" />
+            </HBox>
+                <Label text="FUNDACIÓN" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                <Label text="GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+
+
+
+                <Separator />
+                <VBox spacing="15" style="-fx-padding: 10 0 0 0;">
+                    <Label text="Explora" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+                    <VBox spacing="8">
+                        <Button text="Principal" style="-fx-background-color: #E9E9E9; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
+                        <Button text="Donantes" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
+                        <Button text="Animales" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
+                        <Button text="Asignaciones" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
+                        <Button text="Reportes" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
+                        <Button text="Comentarios" style="-fx-background-color: transparent; -fx-text-fill: black;" maxWidth="150" alignment="CENTER_LEFT"/>
+                    </VBox>
                 </VBox>
             </VBox>
-        </VBox>
+
+            
+
+        </StackPane>
     </left>
 
     <!-- Contenido central -->
@@ -95,14 +116,17 @@
             <!-- Gráfico resumen mensual y actividad reciente -->
             <HBox spacing="20">
                 <!-- Gráfico resumen mensual -->
-<LineChart fx:id="lineChart" prefHeight="180" prefWidth="520">
-    <xAxis>
-        <NumberAxis />
-    </xAxis>
-    <yAxis>
-        <NumberAxis />
-    </yAxis>
-</LineChart>
+                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="550" prefHeight="220">
+                    <Label text="Resumen Mensual" style="-fx-font-weight: bold;"/>
+                    <LineChart fx:id="lineChart" prefHeight="180" prefWidth="520">
+                        <xAxis>
+                            <NumberAxis />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis />
+                        </yAxis>
+                    </LineChart>
+                </VBox>
 
                 <!-- Actividad reciente -->
                 <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="300" prefHeight="220">
@@ -136,6 +160,7 @@
                         <Label fx:id="labelCritico" text="10" />
                     </HBox>
                 </VBox>
+
             </HBox>
 
         </VBox>

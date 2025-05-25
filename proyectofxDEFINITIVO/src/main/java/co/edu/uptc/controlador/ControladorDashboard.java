@@ -1,9 +1,14 @@
 package co.edu.uptc.controlador;
 
+import java.io.IOException;
+
+import co.edu.uptc.App;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.HBox;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 
@@ -67,4 +72,22 @@ public class ControladorDashboard {
             "Donación confirmada - Hace 2 días"
         );
     }
+       @FXML
+    private void Siguienteeeee() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PantallaDashboard");  // Recargar la vista de la pantalla principal
+    }
+    
+       @FXML
+    private void reloadPageeeee() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PantallaDashboard");  // Recargar la vista de la pantalla principal
+    }
+        @FXML
+    private void Antesssss() throws IOException {
+        // Recarga la página actual
+        App.setRoot("PantallaCreaTuContraseña");  // Recargar la vista de la pantalla principal
+    }
+  
+
 }
