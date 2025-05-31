@@ -4,14 +4,18 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
+import javafx.scene.image.ImageView;
+
 
 import co.edu.uptc.App;
 
@@ -37,22 +41,39 @@ public class ControladorDashboard {
 
     @FXML
     private Tab tabDonantes;
-     @FXML
+    @FXML
     private Tab tabAnimales;
-
-       @FXML
+    @FXML
     private Tab tabAsignaciones;
-        @FXML
+    @FXML
     private Tab tabReportes;
     @FXML
     private Tab tabComentarios;
+    @FXML
+private ImageView logoImage;
 
+    // Botones laterales para navegar entre pestañas
+    @FXML private Button btnPrincipal;
+    @FXML private Button btnDonantes;
+    @FXML private Button btnAnimales;
+    @FXML private Button btnAsignaciones;
+    @FXML private Button btnReportes;
+    @FXML private Button btnComentarios;
 
     // Control para no cargar la pantalla varias veces
     private boolean donantesCargado = false;
+    private boolean animalesCargado = false;
+    private boolean asignacionesCargado = false;
+    private boolean reportesCargado = false;
+    private boolean comentariosCargado = false;
 
     @FXML
     public void initialize() {
+
+         // Cargar la imagen desde recursos
+       Image logo = new Image(getClass().getResourceAsStream("/co/edu/uptc/imagenes/Logo.png"));
+
+        logoImage.setImage(logo);
         // Inicializar estadísticas con valores simulados
         labelDonantes.setText("10,353");
         labelAnimales.setText("2,405");
@@ -66,13 +87,12 @@ public class ControladorDashboard {
         progressRegular.setProgress(0.30);
         progressCritico.setProgress(0.10);
 
-        // Limpiar y preparar la gráfica
+        // Preparar la gráfica
         lineChart.getData().clear();
         lineChart.setAnimated(false);
         lineChart.setCreateSymbols(false);
         lineChart.setLegendVisible(false);
 
-        // Datos simulados para gráfico
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
         series.getData().add(new XYChart.Data<>(23, 25000));
         series.getData().add(new XYChart.Data<>(24, 28000));
@@ -94,137 +114,129 @@ public class ControladorDashboard {
             "Donación confirmada - Hace 2 días"
         );
 
-        // Listener para carga dinámica de la pestaña Donantes
+        // Listener único para cargar pantallas según pestaña seleccionada
         tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
             if (newTab == tabDonantes) {
                 cargarPantallaDonantes();
-            }
-        });
-
-
-
-        tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
-            if (newTab == tabDonantes) {
-                cargarPantallaDonantes();
+                actualizarColorBotones(btnDonantes);
             } else if (newTab == tabAnimales) {
                 cargarPantallaAnimales();
-            }
-        });
-        tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
-            if (newTab == tabDonantes) {
-                cargarPantallaDonantes();
-            } else if (newTab == tabAnimales) {
-                cargarPantallaAnimales();
+                actualizarColorBotones(btnAnimales);
             } else if (newTab == tabAsignaciones) {
                 cargarPantallaAsignaciones();
-            }
-        });
-         tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
-            if (newTab == tabReportes) {
+                actualizarColorBotones(btnAsignaciones);
+            } else if (newTab == tabReportes) {
                 cargarPantallaReportes();
+                actualizarColorBotones(btnReportes);
+            } else if (newTab == tabComentarios) {
+                cargarPantallaComentarios();
+                actualizarColorBotones(btnComentarios);
+            } else {
+                // Si seleccionan la pestaña principal (índice 0)
+                actualizarColorBotones(btnPrincipal);
             }
-            // Otros if para otras pestañas...
         });
-         // Listener para cargar la pestaña Comentarios solo cuando se seleccione
-            tabPane.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
-                if (newTab == tabComentarios) {
-                    cargarPantallaComentarios();
-                }
-            });
 
+        // Configurar botones laterales para cambiar pestaña y actualizar color
+        btnPrincipal.setOnAction(e -> {
+            tabPane.getSelectionModel().select(0);
+            actualizarColorBotones(btnPrincipal);
+        });
+        btnDonantes.setOnAction(e -> {
+            tabPane.getSelectionModel().select(tabDonantes);
+            actualizarColorBotones(btnDonantes);
+        });
+        btnAnimales.setOnAction(e -> {
+            tabPane.getSelectionModel().select(tabAnimales);
+            actualizarColorBotones(btnAnimales);
+        });
+        btnAsignaciones.setOnAction(e -> {
+            tabPane.getSelectionModel().select(tabAsignaciones);
+            actualizarColorBotones(btnAsignaciones);
+        });
+        btnReportes.setOnAction(e -> {
+            tabPane.getSelectionModel().select(tabReportes);
+            actualizarColorBotones(btnReportes);
+        });
+        btnComentarios.setOnAction(e -> {
+            tabPane.getSelectionModel().select(tabComentarios);
+            actualizarColorBotones(btnComentarios);
+        });
+
+        // Inicializar color botón principal al cargar la app
+        actualizarColorBotones(btnPrincipal);
     }
-        
-    private void cargarPantallaDonantes() {
-        if (donantesCargado) {
-            return; // Ya cargamos la pantalla, no cargar de nuevo
+
+    private void actualizarColorBotones(Button activo) {
+        Button[] botones = { btnPrincipal, btnDonantes, btnAnimales, btnAsignaciones, btnReportes, btnComentarios };
+        for (Button btn : botones) {
+            if (btn == activo) {
+                btn.setStyle("-fx-background-color: #E9E9E9; -fx-text-fill: black;"); // color activo
+            } else {
+                btn.setStyle("-fx-background-color: transparent; -fx-text-fill: black;"); // color normal
+            }
         }
+    }
+
+    private void cargarPantallaDonantes() {
+        if (donantesCargado) return;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaDonantes.fxml"));
             Pane contenidoDonantes = loader.load();
-
             tabDonantes.setContent(contenidoDonantes);
-
             donantesCargado = true;
         } catch (IOException e) {
             e.printStackTrace();
-            // Aquí puedes agregar manejo de errores, alertas, etc.
         }
     }
-    private boolean animalesCargado = false; // Variable para controlar carga única
 
-        private void cargarPantallaAnimales() {
-            if (animalesCargado) {
-                return; // Ya cargamos la pantalla, no cargar de nuevo
-            }
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaAnimales.fxml"));
-                Pane contenidoAnimales = loader.load();
-
-                tabAnimales.setContent(contenidoAnimales);
-
-                animalesCargado = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Manejo de errores, alertas, etc.
-            }
+    private void cargarPantallaAnimales() {
+        if (animalesCargado) return;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaAnimales.fxml"));
+            Pane contenidoAnimales = loader.load();
+            tabAnimales.setContent(contenidoAnimales);
+            animalesCargado = true;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-                private boolean asignacionesCargado = false; // Controla carga única
+    }
 
-        private void cargarPantallaAsignaciones() {
-            if (asignacionesCargado) {
-                return; // Ya cargamos la pantalla, no cargar de nuevo
-            }
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaAsignaciones.fxml"));
-                Pane contenidoAsignaciones = loader.load();
-
-                tabAsignaciones.setContent(contenidoAsignaciones);
-
-                asignacionesCargado = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Manejo de errores, alertas, etc.
-            }
+    private void cargarPantallaAsignaciones() {
+        if (asignacionesCargado) return;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaAsignaciones.fxml"));
+            Pane contenidoAsignaciones = loader.load();
+            tabAsignaciones.setContent(contenidoAsignaciones);
+            asignacionesCargado = true;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
-        private boolean reportesCargado = false;
-
-        private void cargarPantallaReportes() {
-            if (reportesCargado) {
-                return;
-            }
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaReportes.fxml"));
-                Pane contenidoReportes = loader.load();
-
-                tabReportes.setContent(contenidoReportes);
-
-                reportesCargado = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    private void cargarPantallaReportes() {
+        if (reportesCargado) return;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaReportes.fxml"));
+            Pane contenidoReportes = loader.load();
+            tabReportes.setContent(contenidoReportes);
+            reportesCargado = true;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        // Variable para controlar carga única de Comentarios
-private boolean comentariosCargado = false;
-        // Método para cargar contenido de PantallaComentarios.fxml en la pestaña Comentarios
-        private void cargarPantallaComentarios() {
-            if (comentariosCargado) {
-                return; // Ya cargamos la pantalla, no cargar de nuevo
-            }
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaComentarios.fxml"));
-                Pane contenidoComentarios = loader.load();
+    }
 
-                tabComentarios.setContent(contenidoComentarios);
-
-                comentariosCargado = true;
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Manejo de errores, alertas, etc.
-            }
+    private void cargarPantallaComentarios() {
+        if (comentariosCargado) return;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/uptc/PantallaComentarios.fxml"));
+            Pane contenidoComentarios = loader.load();
+            tabComentarios.setContent(contenidoComentarios);
+            comentariosCargado = true;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
+    }
 
     @FXML
     private void Siguienteeeee() throws IOException {
