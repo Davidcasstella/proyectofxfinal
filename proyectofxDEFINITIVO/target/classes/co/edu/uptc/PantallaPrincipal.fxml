@@ -1,0 +1,72 @@
+<VBox xmlns:fx="http://javafx.com/fxml" spacing="15" style="-fx-padding: 15; -fx-background-color: white;">
+
+    <!-- Estadísticas principales -->
+    <HBox spacing="20" style="-fx-padding: 10;">
+        <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
+            <Label text="Donantes" style="-fx-font-weight: bold;"/>
+            <Label fx:id="labelDonantes" text="10,353" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+            <Label text="+20% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
+        </VBox>
+        <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
+            <Label text="Animales" style="-fx-font-weight: bold;"/>
+            <Label fx:id="labelAnimales" text="2,405" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+            <Label text="+33% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
+        </VBox>
+        <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
+            <Label text="Donaciones" style="-fx-font-weight: bold;"/>
+            <Label fx:id="labelDonaciones" style="-fx-font-size: 28; -fx-font-weight: bold;">
+                <![CDATA[$45,678.90]]>
+            </Label>
+            <Label text="-8% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Gráfico resumen mensual y actividad reciente -->
+    <HBox spacing="20">
+        <!-- Gráfico resumen mensual -->
+        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="550" prefHeight="220">
+            <Label text="Resumen Mensual" style="-fx-font-weight: bold;"/>
+            <LineChart fx:id="lineChart" prefHeight="180" prefWidth="520">
+                <xAxis>
+                    <NumberAxis />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis />
+                </yAxis>
+            </LineChart>
+        </VBox>
+
+        <!-- Actividad reciente -->
+        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="300" prefHeight="220">
+            <Label text="Actividad Reciente" style="-fx-font-weight: bold;"/>
+            <ListView fx:id="activityList" prefHeight="180" prefWidth="280"/>
+        </VBox>
+    </HBox>
+
+    <!-- Animales por estado de salud -->
+    <HBox spacing="20" style="-fx-padding: 10 0 0 0;">
+        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" spacing="8">
+            <Label text="Bueno" />
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <ProgressBar fx:id="progressBueno" progress="0.5" prefWidth="150"/>
+                <Label fx:id="labelBueno" text="50" />
+            </HBox>
+        </VBox>
+
+        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" spacing="8">
+            <Label text="Regular" />
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <ProgressBar fx:id="progressRegular" progress="0.3" prefWidth="150"/>
+                <Label fx:id="labelRegular" text="30" />
+            </HBox>
+        </VBox>
+
+        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" spacing="8">
+            <Label text="Crítico" />
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <ProgressBar fx:id="progressCritico" progress="0.1" prefWidth="150"/>
+                <Label fx:id="labelCritico" text="10" />
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

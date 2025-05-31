@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uptc.controlador.ControladorAsignaciones"
+      spacing="20" style="-fx-padding: 20; -fx-background-color: white;">
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <VBox spacing="4">
+            <Label text="Asignaciones" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+            <Label text="Historial de Asignaciones" style="-fx-text-fill: gray;"/>
+        </VBox>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Button text="Asignar Recurso" fx:id="btnAsignarRecurso" style="-fx-background-color: #333; -fx-text-fill: white;"/>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" prefHeight="400" style="-fx-background-color: transparent;">
+        <TableView fx:id="tablaAsignaciones" prefWidth="800" prefHeight="400" >
+
+            <columns>
+                <TableColumn text="Donante" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="donante"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Animal" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="animal"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Recurso" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="recurso"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Estado" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="estado"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Eliminar" prefWidth="100" />
+            </columns>
+        </TableView>
+    </ScrollPane>
+</VBox>

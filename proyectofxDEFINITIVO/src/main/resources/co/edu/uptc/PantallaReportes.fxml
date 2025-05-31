@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uptc.controlador.ControladorReportes"
+      spacing="20" style="-fx-padding: 20; -fx-background-color: white;">
+
+    <VBox spacing="8" alignment="TOP_LEFT">
+        <Label text="REPORTES" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+        <Label text="Generar, visualizar y descargar reportes." style="-fx-text-fill: gray;"/>
+    </VBox>
+
+    <HBox spacing="80" alignment="TOP_LEFT">
+
+        <VBox spacing="8" alignment="TOP_LEFT" prefWidth="300">
+            <VBox style="-fx-background-color: #aaa; -fx-padding: 30 20; -fx-pref-height: 140; -fx-border-radius: 8; -fx-background-radius: 8;">
+                <Label text="Descargar" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22;"/>
+            </VBox>
+            <Label text="Descargar Reporte" style="-fx-font-weight: bold;"/>
+          <Label text="Aquí podemos descargar los reportes"
+            style="-fx-text-fill: gray; -fx-font-size: 12;" />
+        <Label text="generales sobre la fundación."
+            style="-fx-text-fill: gray; -fx-font-size: 12;" />
+
+
+
+            <Button text="Descargar Reporte" fx:id="btnDescargarReporte"
+                    style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold;"
+                    prefWidth="150"/>
+        </VBox>
+
+        <VBox spacing="8" alignment="TOP_LEFT" prefWidth="300">
+            <VBox style="-fx-background-color: #777; -fx-padding: 30 20; -fx-pref-height: 140; -fx-border-radius: 8; -fx-background-radius: 8;">
+                <Label text="Reporte Usuarios" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22;"/>
+            </VBox>
+            <Label text="Recibo de Donación" style="-fx-font-weight: bold;"/>
+            <Label text="Aquí puedes ver los recibos de pago"
+                   style="-fx-text-fill: gray; -fx-font-size: 12;"/>
+                   
+            <Label text="de la donación que hayan realizado los usuarios"
+                 style="-fx-text-fill: gray; -fx-font-size: 12;"/>
+            <Button text="Recibo Voluntarios" fx:id="btnReciboVoluntarios"
+                    style="-fx-background-color: black; -fx-text-fill: white; -fx-font-weight: bold;"
+                    prefWidth="150"/>
+        </VBox>
+
+    </HBox>
+
+</VBox>

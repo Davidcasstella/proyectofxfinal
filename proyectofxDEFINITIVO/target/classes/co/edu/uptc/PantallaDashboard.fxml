@@ -26,23 +26,19 @@
     <left>
         <StackPane style="-fx-background-color: white;">
 
-            <!-- Menú lateral con padding reducido arriba para que quede más cerca de los botones -->
             <VBox spacing="10" style="-fx-padding: 10 20 20 20;">
-        <!-- Botones superpuestos arriba izquierda con margen para que no queden pegados al borde -->
-            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 8 0 0 8;" StackPane.alignment="TOP_LEFT">
-                <Button text="←" onAction="#Antesssss"
-                        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; 
-                               -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
-                <Button text="→" onAction="#Siguienteeeee"
-                        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; 
-                               -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
-                <Button text="↻" onAction="#reloadPageeeee"
-                        style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px;" />
-            </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 8 0 0 8;" StackPane.alignment="TOP_LEFT">
+                    <Button text="←" onAction="#Antesssss"
+                            style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; 
+                                   -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+                    <Button text="→" onAction="#Siguienteeeee"
+                            style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; 
+                                   -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+                    <Button text="↻" onAction="#reloadPageeeee"
+                            style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px;" />
+                </HBox>
                 <Label text="FUNDACIÓN" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
                 <Label text="GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
-
-
 
                 <Separator />
                 <VBox spacing="15" style="-fx-padding: 10 0 0 0;">
@@ -58,112 +54,110 @@
                 </VBox>
             </VBox>
 
-            
-
         </StackPane>
     </left>
 
     <!-- Contenido central -->
     <center>
-        <VBox spacing="15" style="-fx-padding: 15;">
 
-            <!-- Encabezado -->
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <Rectangle width="40" height="40" fill="black" />
-                <VBox spacing="2">
-                    <Label text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
-                    <Label text="Bienvenido User1234 (Administrador)" style="-fx-font-size: 12; -fx-text-fill: gray;"/>
-                </VBox>
-                <Pane HBox.hgrow="ALWAYS" />
-                <HBox spacing="8" alignment="CENTER_RIGHT">
-                    <Label text="👤" style="-fx-font-size: 16;"/>
-                    <Label text="User1234"/>
-                    <Button text="Cerrar Sesión" style="-fx-background-color: transparent; -fx-text-fill: black;"/>
-                </HBox>
+        <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10 15 0 15;">
+            <Rectangle width="40" height="40" fill="black" />
+            <VBox spacing="2">
+                <Label text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
+                <Label text="Bienvenido User1234 (Administrador)" style="-fx-font-size: 12; -fx-text-fill: gray;"/>
+            </VBox>
+            <Pane HBox.hgrow="ALWAYS" />
+            <HBox spacing="8" alignment="CENTER_RIGHT">
+                <Label text="👤" style="-fx-font-size: 16;"/>
+                <Label text="User1234"/>
+                <Button text="Cerrar Sesión" style="-fx-background-color: transparent; -fx-text-fill: black;"/>
             </HBox>
+        </HBox>
 
-            <!-- Pestañas -->
-            <TabPane tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: transparent;">
-                <Tab text="Principal" />
-                <Tab text="Donantes" />
-                <Tab text="Animales" />
-                <Tab text="Asignaciones" />
-                <Tab text="Reportes" />
-                <Tab text="Comentarios" />
-            </TabPane>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: transparent; -fx-padding: 15;">
+            <Tab text="Principal">
+                <VBox spacing="15" style="-fx-padding: 15;">
 
-            <!-- Estadísticas principales -->
-            <HBox spacing="20" style="-fx-padding: 10;">
-                <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
-                    <Label text="Donantes" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="labelDonantes" text="10,353" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
-                    <Label text="+20% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
-                </VBox>
-                <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
-                    <Label text="Animales" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="labelAnimales" text="2,405" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
-                    <Label text="+33% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
-                </VBox>
-                <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
-                    <Label text="Donaciones" style="-fx-font-weight: bold;"/>
-                    <Label fx:id="labelDonaciones" style="-fx-font-size: 28; -fx-font-weight: bold;">
-                        <![CDATA[$45,678.90]]>
-                    </Label>
-                    <Label text="-8% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
-                </VBox>
-            </HBox>
-
-            <!-- Gráfico resumen mensual y actividad reciente -->
-            <HBox spacing="20">
-                <!-- Gráfico resumen mensual -->
-                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="550" prefHeight="220">
-                    <Label text="Resumen Mensual" style="-fx-font-weight: bold;"/>
-                    <LineChart fx:id="lineChart" prefHeight="180" prefWidth="520">
-                        <xAxis>
-                            <NumberAxis />
-                        </xAxis>
-                        <yAxis>
-                            <NumberAxis />
-                        </yAxis>
-                    </LineChart>
-                </VBox>
-
-                <!-- Actividad reciente -->
-                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="300" prefHeight="220">
-                    <Label text="Actividad Reciente" style="-fx-font-weight: bold;"/>
-                    <ListView fx:id="activityList" prefHeight="180" prefWidth="280"/>
-                </VBox>
-            </HBox>
-
-            <!-- Animales por estado de salud -->
-            <HBox spacing="20" style="-fx-padding: 10 0 0 0;">
-                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" alignment="CENTER_LEFT" spacing="8">
-                    <Label text="Bueno" />
-                    <HBox spacing="8" alignment="CENTER_LEFT">
-                        <ProgressBar fx:id="progressBueno" progress="0.5" prefWidth="150"/>
-                        <Label fx:id="labelBueno" text="50" />
+                    <!-- Estadísticas principales -->
+                    <HBox spacing="20" style="-fx-padding: 10;">
+                        <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
+                            <Label text="Donantes" style="-fx-font-weight: bold;"/>
+                            <Label fx:id="labelDonantes" text="10,353" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+                            <Label text="+20% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
+                        </VBox>
+                        <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
+                            <Label text="Animales" style="-fx-font-weight: bold;"/>
+                            <Label fx:id="labelAnimales" text="2,405" style="-fx-font-size: 28; -fx-font-weight: bold;"/>
+                            <Label text="+33% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
+                        </VBox>
+                        <VBox spacing="4" style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="200">
+                            <Label text="Donaciones" style="-fx-font-weight: bold;"/>
+                            <Label fx:id="labelDonaciones" style="-fx-font-size: 28; -fx-font-weight: bold;">
+                                <![CDATA[$45,678.90]]>
+                            </Label>
+                            <Label text="-8% month over month" style="-fx-font-size: 11; -fx-text-fill: gray;"/>
+                        </VBox>
                     </HBox>
-                </VBox>
 
-                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" alignment="CENTER_LEFT" spacing="8">
-                    <Label text="Regular" />
-                    <HBox spacing="8" alignment="CENTER_LEFT">
-                        <ProgressBar fx:id="progressRegular" progress="0.3" prefWidth="150"/>
-                        <Label fx:id="labelRegular" text="30" />
+                    <!-- Gráfico resumen mensual y actividad reciente -->
+                    <HBox spacing="20">
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="550" prefHeight="220">
+                            <Label text="Resumen Mensual" style="-fx-font-weight: bold;"/>
+                            <LineChart fx:id="lineChart" prefHeight="180" prefWidth="520">
+                                <xAxis>
+                                    <NumberAxis />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis />
+                                </yAxis>
+                            </LineChart>
+                        </VBox>
+
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="300" prefHeight="220">
+                            <Label text="Actividad Reciente" style="-fx-font-weight: bold;"/>
+                            <ListView fx:id="activityList" prefHeight="180" prefWidth="280"/>
+                        </VBox>
                     </HBox>
-                </VBox>
 
-                <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" alignment="CENTER_LEFT" spacing="8">
-                    <Label text="Crítico" />
-                    <HBox spacing="8" alignment="CENTER_LEFT">
-                        <ProgressBar fx:id="progressCritico" progress="0.1" prefWidth="150"/>
-                        <Label fx:id="labelCritico" text="10" />
+                    <!-- Animales por estado de salud -->
+                    <HBox spacing="20" style="-fx-padding: 10 0 0 0;">
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" alignment="CENTER_LEFT" spacing="8">
+                            <Label text="Bueno" />
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <ProgressBar fx:id="progressBueno" progress="0.5" prefWidth="150"/>
+                                <Label fx:id="labelBueno" text="50" />
+                            </HBox>
+                        </VBox>
+
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" alignment="CENTER_LEFT" spacing="8">
+                            <Label text="Regular" />
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <ProgressBar fx:id="progressRegular" progress="0.3" prefWidth="150"/>
+                                <Label fx:id="labelRegular" text="30" />
+                            </HBox>
+                        </VBox>
+
+                        <VBox style="-fx-background-color: white; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="250" alignment="CENTER_LEFT" spacing="8">
+                            <Label text="Crítico" />
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <ProgressBar fx:id="progressCritico" progress="0.1" prefWidth="150"/>
+                                <Label fx:id="labelCritico" text="10" />
+                            </HBox>
+                        </VBox>
+
                     </HBox>
+
                 </VBox>
+            </Tab>
 
-            </HBox>
+            <Tab fx:id="tabDonantes" text="Donantes" />
 
-        </VBox>
+            <Tab fx:id="tabAnimales" text="Animales" />
+            <Tab fx:id="tabAsignaciones" text="Asignaciones" />
+            <Tab  fx:id="tabReportes" text="Reportes" />
+            <Tab fx:id="tabComentarios" text="Comentarios" />
+        </TabPane>
+
     </center>
 
 </BorderPane>

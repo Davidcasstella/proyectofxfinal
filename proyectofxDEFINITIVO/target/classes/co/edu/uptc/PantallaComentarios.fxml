@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uptc.controlador.ControladorComentarios"
+      spacing="20" style="-fx-padding: 20; -fx-background-color: white;">
+
+    <VBox spacing="6" alignment="TOP_LEFT">
+        <Label text="Comentarios" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+        <Label text="Aquí veremos las interacciones entre los usuarios, es decir, puedo gestionar los comentarios hechos en el FORO por cada uno de los voluntarios."
+               style="-fx-text-fill: gray;" wrapText="true"/>
+    </VBox>
+
+    <ScrollPane fitToWidth="true" prefHeight="400" style="-fx-background-color: transparent;">
+        <FlowPane fx:id="flowPaneComentarios" hgap="20" vgap="20" prefWrapLength="800"/>
+    </ScrollPane>
+</VBox>
