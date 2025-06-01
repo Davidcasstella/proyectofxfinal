@@ -1,13 +1,11 @@
 package co.edu.uptc.servicio;
 
-import co.edu.uptc.modelo.Animal;
-import co.edu.uptc.modelo.Donante;
-import co.edu.uptc.modelo.Asignacion;
+import co.edu.uptc.modelo.*;
 import co.edu.uptc.persistencia.*;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class FundacionService {
     
@@ -16,11 +14,17 @@ public class FundacionService {
     private final AnimalDAO animalDAO;
     private final DonanteDAO donanteDAO;
     private final AsignacionDAO asignacionDAO;
+    private final ReporteDAO reporteDAO;
+    private final VoluntarioDAO voluntarioDAO;
+    private final ComentarioDAO comentarioDAO;
     
     private FundacionService() {
         this.animalDAO = new AnimalDAOImpl();
         this.donanteDAO = new DonanteDAOImpl();
         this.asignacionDAO = new AsignacionDAOImpl();
+        this.reporteDAO = new ReporteDAOImpl();
+        this.voluntarioDAO = new VoluntarioDAOImpl();
+        this.comentarioDAO = new ComentarioDAOImpl();
         inicializarDatosPrueba();
     }
     
@@ -46,11 +50,9 @@ public class FundacionService {
     }
     
     public boolean eliminarAnimal(Long id) {
-        // Verificar si hay asignaciones asociadas
         List<Asignacion> asignacionesAnimal = asignacionDAO.buscarPorAnimalId(id);
         if (!asignacionesAnimal.isEmpty()) {
-            // Opcional: eliminar asignaciones asociadas o rechazar eliminación
-            return false; // No permitir eliminar si hay asignaciones
+            return false;
         }
         return animalDAO.eliminar(id);
     }
@@ -90,10 +92,9 @@ public class FundacionService {
     }
     
     public boolean eliminarDonante(Long id) {
-        // Verificar si hay asignaciones asociadas
         List<Asignacion> asignacionesDonante = asignacionDAO.buscarPorDonanteId(id);
         if (!asignacionesDonante.isEmpty()) {
-            return false; // No permitir eliminar si hay asignaciones
+            return false;
         }
         return donanteDAO.eliminar(id);
     }
@@ -113,7 +114,6 @@ public class FundacionService {
     // ==================== MÉTODOS PARA ASIGNACIONES ====================
     
     public Asignacion crearAsignacion(Long donanteId, Long animalId, String recurso, double monto) {
-        // Validar que existan el donante y el animal
         Optional<Donante> donante = donanteDAO.buscarPorId(donanteId);
         Optional<Animal> animal = animalDAO.buscarPorId(animalId);
         
@@ -152,6 +152,152 @@ public class FundacionService {
         return asignacionDAO.obtenerRecientes(dias);
     }
     
+    // ==================== MÉTODOS PARA REPORTES ====================
+    
+    public Reporte generarReporte(String titulo, String tipo, String descripcion, String generadoPor) {
+        Reporte reporte = new Reporte(titulo, tipo, descripcion, generadoPor);
+        
+        // Generar datos según el tipo de reporte
+        Map<String, Object> datos = new HashMap<>();
+        switch (tipo.toUpperCase()) {
+            case "GENERAL":
+                datos = generarDatosReporteGeneral();
+                break;
+            case "DONACIONES":
+                datos = generarDatosReporteDonaciones();
+                break;
+            case "ANIMALES":
+                datos = generarDatosReporteAnimales();
+                break;
+            case "VOLUNTARIOS":
+                datos = generarDatosReporteVoluntarios();
+                break;
+        }
+        
+        reporte.setDatos(datos);
+        return reporteDAO.guardar(reporte);
+    }
+    
+    public List<Reporte> obtenerTodosLosReportes() {
+        return reporteDAO.obtenerTodos();
+    }
+    
+    public List<Reporte> obtenerReportesPorTipo(String tipo) {
+        return reporteDAO.buscarPorTipo(tipo);
+    }
+    
+    public List<Reporte> obtenerReportesRecientes(int dias) {
+        return reporteDAO.obtenerRecientes(dias);
+    }
+    
+    public boolean eliminarReporte(Long id) {
+        return reporteDAO.eliminar(id);
+    }
+    
+    public boolean actualizarReporte(Reporte reporte) {
+        return reporteDAO.actualizar(reporte);
+    }
+    
+    // ==================== MÉTODOS PARA VOLUNTARIOS ====================
+    
+    public Voluntario guardarVoluntario(Voluntario voluntario) {
+        return voluntarioDAO.guardar(voluntario);
+    }
+    
+    public List<Voluntario> obtenerTodosLosVoluntarios() {
+        return voluntarioDAO.obtenerTodos();
+    }
+    
+    public Optional<Voluntario> buscarVoluntarioPorId(Long id) {
+        return voluntarioDAO.buscarPorId(id);
+    }
+    
+    public Optional<Voluntario> buscarVoluntarioPorDocumento(String documento) {
+        return voluntarioDAO.buscarPorDocumento(documento);
+    }
+    
+    public boolean eliminarVoluntario(Long id) {
+        // Verificar si hay comentarios asociados
+        List<Comentario> comentariosVoluntario = comentarioDAO.buscarPorVoluntarioId(id);
+        if (!comentariosVoluntario.isEmpty()) {
+            return false; // No permitir eliminar si hay comentarios
+        }
+        return voluntarioDAO.eliminar(id);
+    }
+    
+    public boolean actualizarVoluntario(Voluntario voluntario) {
+        return voluntarioDAO.actualizar(voluntario);
+    }
+    
+    public List<Voluntario> buscarVoluntariosPorNombre(String nombre) {
+        return voluntarioDAO.buscarPorNombre(nombre);
+    }
+    
+    public List<Voluntario> obtenerVoluntariosActivos() {
+        return voluntarioDAO.obtenerActivos();
+    }
+    
+    public boolean existeDocumentoVoluntario(String documento) {
+        return voluntarioDAO.existeDocumento(documento);
+    }
+    
+    public boolean existeEmailVoluntario(String email) {
+        return voluntarioDAO.existeEmail(email);
+    }
+    
+    // ==================== MÉTODOS PARA COMENTARIOS ====================
+    
+    public Comentario crearComentario(Long voluntarioId, String titulo, String contenido, String categoria) {
+        Optional<Voluntario> voluntario = voluntarioDAO.buscarPorId(voluntarioId);
+        if (voluntario.isEmpty()) {
+            throw new IllegalArgumentException("Voluntario no encontrado");
+        }
+        
+        Comentario comentario = new Comentario(voluntarioId, titulo, contenido, categoria);
+        comentario.setNombreVoluntario(voluntario.get().getNombreCompleto());
+        
+        return comentarioDAO.guardar(comentario);
+    }
+    
+    public List<Comentario> obtenerTodosLosComentarios() {
+        return comentarioDAO.obtenerTodos();
+    }
+    
+    public List<Comentario> obtenerComentariosPorVoluntario(Long voluntarioId) {
+        return comentarioDAO.buscarPorVoluntarioId(voluntarioId);
+    }
+    
+    public List<Comentario> obtenerComentariosPublicos() {
+        return comentarioDAO.obtenerPublicos();
+    }
+    
+    public List<Comentario> obtenerComentariosSinRespuesta() {
+        return comentarioDAO.obtenerSinRespuesta();
+    }
+    
+    public boolean responderComentario(Long comentarioId, String respuesta, String respondidoPor) {
+        Optional<Comentario> comentarioOpt = comentarioDAO.buscarPorId(comentarioId);
+        if (comentarioOpt.isEmpty()) {
+            return false;
+        }
+        
+        Comentario comentario = comentarioOpt.get();
+        comentario.setRespuesta(respuesta);
+        comentario.setFechaRespuesta(LocalDateTime.now());
+        comentario.setRespondidoPor(respondidoPor);
+        comentario.setEstado("RESPONDIDO");
+        
+        return comentarioDAO.actualizar(comentario);
+    }
+    
+    public boolean eliminarComentario(Long id) {
+        return comentarioDAO.eliminar(id);
+    }
+    
+    public boolean actualizarComentario(Comentario comentario) {
+        return comentarioDAO.actualizar(comentario);
+    }
+    
     // ==================== MÉTODOS DE ESTADÍSTICAS ====================
     
     public long contarDonantes() {
@@ -166,14 +312,67 @@ public class FundacionService {
         return asignacionDAO.contarTodas();
     }
     
+    public long contarVoluntarios() {
+        return voluntarioDAO.contarTodos();
+    }
+    
+    public long contarComentarios() {
+        return comentarioDAO.contarTodos();
+    }
+    
+    public long contarReportes() {
+        return reporteDAO.contarTodos();
+    }
+    
     public double obtenerMontoTotalDonaciones() {
         return asignacionDAO.obtenerMontoTotalDonaciones();
+    }
+    
+    // ==================== MÉTODOS PRIVADOS DE GENERACIÓN DE DATOS ====================
+    
+    private Map<String, Object> generarDatosReporteGeneral() {
+        Map<String, Object> datos = new HashMap<>();
+        datos.put("totalAnimales", contarAnimales());
+        datos.put("totalDonantes", contarDonantes());
+        datos.put("totalVoluntarios", contarVoluntarios());
+        datos.put("totalAsignaciones", contarAsignaciones());
+        datos.put("totalComentarios", contarComentarios());
+        datos.put("montoTotalDonaciones", obtenerMontoTotalDonaciones());
+        datos.put("fechaGeneracion", LocalDateTime.now());
+        return datos;
+    }
+    
+    private Map<String, Object> generarDatosReporteDonaciones() {
+        Map<String, Object> datos = new HashMap<>();
+        datos.put("totalDonantes", contarDonantes());
+        datos.put("totalAsignaciones", contarAsignaciones());
+        datos.put("montoTotal", obtenerMontoTotalDonaciones());
+        datos.put("asignacionesPendientes", asignacionDAO.contarPorEstado("Pendiente"));
+        datos.put("asignacionesEntregadas", asignacionDAO.contarPorEstado("Entregado"));
+        return datos;
+    }
+    
+    private Map<String, Object> generarDatosReporteAnimales() {
+        Map<String, Object> datos = new HashMap<>();
+        datos.put("totalAnimales", contarAnimales());
+        datos.put("animalesActivos", contarAnimalesPorEstado("Activo"));
+        datos.put("animalesEnTratamiento", contarAnimalesPorEstado("En tratamiento"));
+        datos.put("animalesCriticos", contarAnimalesPorEstado("Crítico"));
+        return datos;
+    }
+    
+    private Map<String, Object> generarDatosReporteVoluntarios() {
+        Map<String, Object> datos = new HashMap<>();
+        datos.put("totalVoluntarios", contarVoluntarios());
+        datos.put("voluntariosActivos", voluntarioDAO.contarPorEstado("ACTIVO"));
+        datos.put("totalComentarios", contarComentarios());
+        datos.put("comentariosSinRespuesta", comentarioDAO.contarPorEstado("NUEVO"));
+        return datos;
     }
     
     // ==================== INICIALIZACIÓN DE DATOS ====================
     
     private void inicializarDatosPrueba() {
-        // Solo agregar datos si no existen
         if (animalDAO.contarTodos() == 0) {
             crearAnimalesIniciales();
         }
@@ -182,6 +381,15 @@ public class FundacionService {
         }
         if (asignacionDAO.contarTodas() == 0) {
             crearAsignacionesIniciales();
+        }
+        if (voluntarioDAO.contarTodos() == 0) {
+            crearVoluntariosIniciales();
+        }
+        if (comentarioDAO.contarTodos() == 0) {
+            crearComentariosIniciales();
+        }
+        if (reporteDAO.contarTodos() == 0) {
+            crearReportesIniciales();
         }
     }
     
@@ -252,7 +460,6 @@ public class FundacionService {
     }
     
     private void crearAsignacionesIniciales() {
-        // Crear algunas asignaciones de ejemplo
         try {
             crearAsignacion(1L, 2L, "Alimento: 10kg", 0);
             crearAsignacion(2L, 1L, "Dinero: $500", 500);
@@ -262,5 +469,43 @@ public class FundacionService {
         } catch (Exception e) {
             System.err.println("Error creando asignaciones iniciales: " + e.getMessage());
         }
+    }
+    
+    private void crearVoluntariosIniciales() {
+        List<String> nombres = Arrays.asList(
+            "Juan Pérez", "Ana Gómez", "Luis Martínez", "María López", "Carlos Ruiz",
+            "Sofía Díaz", "Andrés Torres", "Lucía Fernández", "Miguel Castillo", "Laura Mendoza"
+        );
+        
+        String[] especialidades = {"CUIDADO_ANIMALES", "VETERINARIA", "ADMINISTRACION", "LIMPIEZA"};
+        
+        for (int i = 0; i < nombres.size(); i++) {
+            String[] nombreCompleto = nombres.get(i).split(" ");
+            Voluntario voluntario = new Voluntario(nombreCompleto[0], nombreCompleto[1], 
+                    nombreCompleto[0].toLowerCase() + "@voluntarios.com", "DOC" + (100 + i));
+            voluntario.setEspecialidad(especialidades[i % especialidades.length]);
+            voluntario.setTelefono("555-" + (1000 + i));
+            voluntario.setHorasVoluntariado(i * 10);
+            voluntarioDAO.guardar(voluntario);
+        }
+    }
+    
+    private void crearComentariosIniciales() {
+        try {
+            crearComentario(1L, "Sugerencia de mejora", "Sería bueno tener más horarios disponibles para el cuidado de animales", "SUGERENCIA");
+            crearComentario(2L, "Reporte de actividad", "Esta semana ayudé con la limpieza y alimentación de 5 gatos", "REPORTE");
+            crearComentario(3L, "Felicitación", "Excelente trabajo del equipo veterinario con Luna", "FELICITACION");
+            crearComentario(4L, "Pregunta sobre protocolo", "¿Cuál es el protocolo para animales críticos?", "PREGUNTA");
+            crearComentario(5L, "Disponibilidad", "Estaré disponible los fines de semana este mes", "REPORTE");
+        } catch (Exception e) {
+            System.err.println("Error creando comentarios iniciales: " + e.getMessage());
+        }
+    }
+    
+    private void crearReportesIniciales() {
+        generarReporte("Reporte General Mensual", "GENERAL", "Reporte completo de actividades del mes", "Sistema");
+        generarReporte("Reporte de Donaciones", "DONACIONES", "Análisis de donaciones recibidas", "Sistema");
+        generarReporte("Estado de Animales", "ANIMALES", "Resumen del estado de salud de todos los animales", "Sistema");
+        generarReporte("Actividad de Voluntarios", "VOLUNTARIOS", "Reporte de participación de voluntarios", "Sistema");
     }
 }

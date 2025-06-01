@@ -1,0 +1,97 @@
+[
+  {
+    "id": 1,
+    "titulo": "Reporte General Mensual",
+    "tipoReporte": "GENERAL",
+    "descripcion": "Reporte completo de actividades del mes",
+    "fechaGeneracion": "2025-05-31T22:22:26.722606",
+    "generadoPor": "Sistema",
+    "estado": "GENERADO",
+    "datos": {
+      "totalVoluntarios": 10.0,
+      "totalAnimales": 7.0,
+      "totalComentarios": 5.0,
+      "montoTotalDonaciones": 700.0,
+      "totalAsignaciones": 6.0,
+      "fechaGeneracion": "2025-05-31T22:22:26.7276157",
+      "totalDonantes": 8.0
+    }
+  },
+  {
+    "id": 2,
+    "titulo": "Reporte de Donaciones",
+    "tipoReporte": "DONACIONES",
+    "descripcion": "Análisis de donaciones recibidas",
+    "fechaGeneracion": "2025-05-31T22:22:26.7326108",
+    "generadoPor": "Sistema",
+    "estado": "GENERADO",
+    "datos": {
+      "asignacionesPendientes": 6.0,
+      "totalAsignaciones": 6.0,
+      "asignacionesEntregadas": 0.0,
+      "totalDonantes": 8.0,
+      "montoTotal": 700.0
+    }
+  },
+  {
+    "id": 3,
+    "titulo": "Estado de Animales",
+    "tipoReporte": "ANIMALES",
+    "descripcion": "Resumen del estado de salud de todos los animales",
+    "fechaGeneracion": "2025-05-31T22:22:26.7366103",
+    "generadoPor": "Sistema",
+    "estado": "GENERADO",
+    "datos": {
+      "totalAnimales": 7.0,
+      "animalesCriticos": 2.0,
+      "animalesEnTratamiento": 2.0,
+      "animalesActivos": 2.0
+    }
+  },
+  {
+    "id": 4,
+    "titulo": "Actividad de Voluntarios",
+    "tipoReporte": "VOLUNTARIOS",
+    "descripcion": "Reporte de participación de voluntarios",
+    "fechaGeneracion": "2025-05-31T22:22:26.7396116",
+    "generadoPor": "Sistema",
+    "estado": "GENERADO",
+    "datos": {
+      "totalVoluntarios": 10.0,
+      "totalComentarios": 5.0,
+      "comentariosSinRespuesta": 5.0,
+      "voluntariosActivos": 10.0
+    }
+  },
+  {
+    "id": 5,
+    "titulo": "Reporte de Actividad de Voluntarios",
+    "tipoReporte": "VOLUNTARIOS",
+    "descripcion": "Reporte detallado de la actividad y comentarios de voluntarios",
+    "fechaGeneracion": "2025-05-31T22:36:33.3677794",
+    "generadoPor": "Usuario1234",
+    "estado": "GENERADO",
+    "datos": {
+      "totalVoluntarios": 10,
+      "totalComentarios": 6,
+      "comentariosSinRespuesta": 6,
+      "voluntariosActivos": 10
+    }
+  },
+  {
+    "id": 6,
+    "titulo": "Reporte de donaciones",
+    "tipoReporte": "DONACIONES",
+    "descripcion": "",
+    "fechaGeneracion": "2025-05-31T22:36:55.0428545",
+    "generadoPor": "Usuario1234",
+    "estado": "GENERADO",
+    "datos": {
+      "asignacionesPendientes": 6,
+      "totalAsignaciones": 6,
+      "asignacionesEntregadas": 0,
+      "totalDonantes": 8,
+      "montoTotal": 700.0
+    }
+  }
+]

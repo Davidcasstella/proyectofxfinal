@@ -15,7 +15,7 @@ module proyectofxdefinitivo {
     opens co.edu.uptc to javafx.fxml;
     opens co.edu.uptc.controlador to javafx.fxml;
     
-    // Abrir paquetes para Gson reflection
+    // Abrir paquetes para Gson reflection (todos los modelos)
     opens co.edu.uptc.modelo to com.google.gson;
     opens co.edu.uptc.persistencia to com.google.gson;
 }

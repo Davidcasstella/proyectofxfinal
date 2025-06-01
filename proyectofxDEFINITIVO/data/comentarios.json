@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "voluntarioId": 1,
+    "nombreVoluntario": "Juan Pérez",
+    "titulo": "Sugerencia de mejora",
+    "contenido": "Sería bueno tener más horarios disponibles para el cuidado de animales",
+    "categoria": "SUGERENCIA",
+    "fechaCreacion": "2025-05-31T22:22:26.712607",
+    "estado": "NUEVO",
+    "prioridad": "MEDIA",
+    "publico": true
+  },
+  {
+    "id": 2,
+    "voluntarioId": 2,
+    "nombreVoluntario": "Ana Gómez",
+    "titulo": "Reporte de actividad",
+    "contenido": "Esta semana ayudé con la limpieza y alimentación de 5 gatos",
+    "categoria": "REPORTE",
+    "fechaCreacion": "2025-05-31T22:22:26.716609",
+    "estado": "NUEVO",
+    "prioridad": "MEDIA",
+    "publico": true
+  },
+  {
+    "id": 3,
+    "voluntarioId": 3,
+    "nombreVoluntario": "Luis Martínez",
+    "titulo": "Felicitación",
+    "contenido": "Excelente trabajo del equipo veterinario con Luna",
+    "categoria": "FELICITACION",
+    "fechaCreacion": "2025-05-31T22:22:26.7176094",
+    "estado": "NUEVO",
+    "prioridad": "MEDIA",
+    "publico": true
+  },
+  {
+    "id": 4,
+    "voluntarioId": 4,
+    "nombreVoluntario": "María López",
+    "titulo": "Pregunta sobre protocolo",
+    "contenido": "¿Cuál es el protocolo para animales críticos?",
+    "categoria": "PREGUNTA",
+    "fechaCreacion": "2025-05-31T22:22:26.7186091",
+    "estado": "NUEVO",
+    "prioridad": "MEDIA",
+    "publico": true
+  },
+  {
+    "id": 5,
+    "voluntarioId": 5,
+    "nombreVoluntario": "Carlos Ruiz",
+    "titulo": "Disponibilidad",
+    "contenido": "Estaré disponible los fines de semana este mes",
+    "categoria": "REPORTE",
+    "fechaCreacion": "2025-05-31T22:22:26.719609",
+    "estado": "NUEVO",
+    "prioridad": "MEDIA",
+    "publico": true
+  },
+  {
+    "id": 6,
+    "voluntarioId": 6,
+    "nombreVoluntario": "Sofía Díaz",
+    "titulo": "Respuesta",
+    "contenido": "que comida entregas?",
+    "categoria": "PREGUNTA",
+    "fechaCreacion": "2025-05-31T22:27:39.3330845",
+    "estado": "NUEVO",
+    "prioridad": "BAJA",
+    "publico": true
+  }
+]
