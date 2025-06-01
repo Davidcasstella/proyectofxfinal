@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "donanteId": 1,
+    "animalId": 2,
+    "donante": "Juan Pérez",
+    "animal": "Luna (Gato)",
+    "recurso": "Alimento: 10kg",
+    "estado": "Pendiente",
+    "fechaAsignacion": "2025-05-31",
+    "monto": 0.0
+  },
+  {
+    "id": 2,
+    "donanteId": 2,
+    "animalId": 1,
+    "donante": "Ana Gómez",
+    "animal": "Max (Perro)",
+    "recurso": "Dinero: $500",
+    "estado": "Pendiente",
+    "fechaAsignacion": "2025-05-31",
+    "monto": 500.0
+  },
+  {
+    "id": 3,
+    "donanteId": 3,
+    "animalId": 3,
+    "donante": "Luis Martínez",
+    "animal": "Peppa (Gato)",
+    "recurso": "Medicamento: Antipulgas",
+    "estado": "Pendiente",
+    "fechaAsignacion": "2025-05-31",
+    "monto": 0.0
+  },
+  {
+    "id": 4,
+    "donanteId": 4,
+    "animalId": 4,
+    "donante": "María López",
+    "animal": "Lucas (Gato)",
+    "recurso": "Alimento: 5kg",
+    "estado": "Pendiente",
+    "fechaAsignacion": "2025-05-31",
+    "monto": 0.0
+  },
+  {
+    "id": 5,
+    "donanteId": 5,
+    "animalId": 5,
+    "donante": "Carlos Ruiz",
+    "animal": "Tobias (Gato)",
+    "recurso": "Dinero: $200",
+    "estado": "Pendiente",
+    "fechaAsignacion": "2025-05-31",
+    "monto": 200.0
+  },
+  {
+    "id": 6,
+    "donanteId": 8,
+    "animalId": 3,
+    "donante": "pepe",
+    "animal": "Peppa (Gato)",
+    "recurso": "Agua",
+    "estado": "Pendiente",
+    "fechaAsignacion": "2025-05-31",
+    "monto": 1.0
+  }
+]

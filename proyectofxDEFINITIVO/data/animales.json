@@ -1,0 +1,88 @@
+[
+  {
+    "id": 1,
+    "nombre": "Max",
+    "especie": "Perro",
+    "estado": "Activo",
+    "foto": "foto1.png",
+    "raza": "Labrador",
+    "edad": 3,
+    "sexo": "Macho",
+    "descripcion": "Perro muy juguetón y cariñoso",
+    "fechaIngreso": "2025-05-31",
+    "adoptado": false
+  },
+  {
+    "id": 2,
+    "nombre": "Luna",
+    "especie": "Gato",
+    "estado": "En tratamiento",
+    "foto": "foto2.png",
+    "raza": "Persa",
+    "edad": 2,
+    "sexo": "Hembra",
+    "descripcion": "Gata tranquila en recuperación",
+    "fechaIngreso": "2025-05-31",
+    "adoptado": false
+  },
+  {
+    "id": 3,
+    "nombre": "Peppa",
+    "especie": "Gato",
+    "estado": "Activo",
+    "foto": "foto3.png",
+    "raza": "Mestizo",
+    "edad": 1,
+    "sexo": "Hembra",
+    "fechaIngreso": "2025-05-31",
+    "adoptado": false
+  },
+  {
+    "id": 4,
+    "nombre": "Lucas",
+    "especie": "Gato",
+    "estado": "Crítico",
+    "foto": "foto4.png",
+    "raza": "Siamés",
+    "edad": 5,
+    "sexo": "Macho",
+    "fechaIngreso": "2025-05-31",
+    "adoptado": false
+  },
+  {
+    "id": 5,
+    "nombre": "Tobias",
+    "especie": "Gato",
+    "estado": "En observación",
+    "foto": "foto5.png",
+    "raza": "Mestizo",
+    "edad": 4,
+    "sexo": "Macho",
+    "fechaIngreso": "2025-05-31",
+    "adoptado": false
+  },
+  {
+    "id": 6,
+    "nombre": "toni",
+    "especie": "Otro",
+    "estado": "En tratamiento",
+    "raza": "perro",
+    "edad": 3,
+    "sexo": "Macho",
+    "descripcion": "Toni esta en tratamiento",
+    "fechaIngreso": "2025-05-31",
+    "adoptado": true
+  },
+  {
+    "id": 7,
+    "nombre": "felix",
+    "especie": "Perro",
+    "estado": "Crítico",
+    "raza": "PastorAleman",
+    "edad": 7,
+    "sexo": "Macho",
+    "descripcion": "En critico",
+    "fechaIngreso": "2025-05-31",
+    "adoptado": true
+  }
+]

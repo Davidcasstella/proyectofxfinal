@@ -1,0 +1,100 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "documento": "123-456",
+    "email": "juan@email.com",
+    "telefono": "555-1234",
+    "dinero": true,
+    "alimento": false,
+    "medicamento": false,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  },
+  {
+    "id": 2,
+    "nombre": "Ana Gómez",
+    "documento": "789-012",
+    "email": "ana@email.com",
+    "telefono": "555-5678",
+    "dinero": true,
+    "alimento": true,
+    "medicamento": false,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  },
+  {
+    "id": 3,
+    "nombre": "Luis Martínez",
+    "documento": "345-678",
+    "email": "luis@email.com",
+    "telefono": "555-9012",
+    "dinero": false,
+    "alimento": true,
+    "medicamento": true,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  },
+  {
+    "id": 4,
+    "nombre": "María López",
+    "documento": "901-234",
+    "email": "maria@email.com",
+    "telefono": "555-3456",
+    "dinero": true,
+    "alimento": false,
+    "medicamento": true,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  },
+  {
+    "id": 5,
+    "nombre": "Carlos Ruiz",
+    "documento": "567-890",
+    "email": "carlos@email.com",
+    "telefono": "555-7890",
+    "dinero": false,
+    "alimento": true,
+    "medicamento": false,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  },
+  {
+    "id": 6,
+    "nombre": "Sofía Díaz",
+    "documento": "234-567",
+    "email": "sofia@email.com",
+    "telefono": "555-2345",
+    "dinero": true,
+    "alimento": true,
+    "medicamento": true,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  },
+  {
+    "id": 7,
+    "nombre": "david",
+    "documento": "dasd",
+    "email": "adsd",
+    "telefono": "123123",
+    "direccion": "123123",
+    "dinero": true,
+    "alimento": false,
+    "medicamento": false,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  },
+  {
+    "id": 8,
+    "nombre": "pepe",
+    "documento": "123456",
+    "email": "amcipdav@gmail.com",
+    "telefono": "3202484263",
+    "direccion": "av3n8-138",
+    "dinero": true,
+    "alimento": false,
+    "medicamento": false,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  }
+]

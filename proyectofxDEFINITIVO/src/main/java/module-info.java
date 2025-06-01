@@ -1,16 +1,21 @@
-module co.edu.uptc {
+module proyectofxdefinitivo {
     requires javafx.controls;
     requires javafx.fxml;
-    requires transitive javafx.graphics;
+    requires java.desktop;
+    requires com.google.gson;
 
-    requires java.base;
-    // Aquí agregas esta línea para leer el módulo anónimo, en Java 9+ es así:
-    // pero java no soporta explícitamente esta sintaxis, así que en la práctica:
-    // la librería no modular se considera en unnamed module y debe abrirse el paquete.
-
-    opens co.edu.uptc.controlador to javafx.fxml;
-    opens co.edu.uptc.persistencia;
-    opens co.edu.uptc.modelo;
-
+    // Exportar paquetes principales
     exports co.edu.uptc;
+    exports co.edu.uptc.controlador;
+    exports co.edu.uptc.modelo;
+    exports co.edu.uptc.servicio;
+    exports co.edu.uptc.persistencia;
+
+    // Abrir paquetes para JavaFX FXML reflection
+    opens co.edu.uptc to javafx.fxml;
+    opens co.edu.uptc.controlador to javafx.fxml;
+    
+    // Abrir paquetes para Gson reflection
+    opens co.edu.uptc.modelo to com.google.gson;
+    opens co.edu.uptc.persistencia to com.google.gson;
 }
