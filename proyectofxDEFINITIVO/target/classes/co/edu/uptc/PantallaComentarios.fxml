@@ -7,51 +7,60 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="co.edu.uptc.controlador.ControladorComentarios"
-      spacing="20" style="-fx-padding: 20; -fx-background-color: white;">
+      spacing="0" style="-fx-background-color: white; -fx-padding: 0;"
+      >
 
-    <VBox spacing="6" alignment="TOP_LEFT">
-        <Label text="GESTIÓN DE COMENTARIOS" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
-        <Label text="Administra las interacciones con voluntarios y gestiona sus comentarios en el foro."
-               style="-fx-text-fill: gray;" wrapText="true"/>
-    </VBox>
+    <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+        <content>
+            <VBox spacing="20" style="-fx-padding: 20;" alignment="TOP_LEFT">
 
-    <!-- Estadísticas rápidas -->
-    <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 10;">
-        <VBox spacing="4" style="-fx-background-color: #e3f2fd; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="180">
-            <Label text="Total Voluntarios" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
-            <Label fx:id="labelTotalVoluntarios" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #1976d2;"/>
-        </VBox>
-        <VBox spacing="4" style="-fx-background-color: #e8f5e8; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="180">
-            <Label text="Comentarios Nuevos" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
-            <Label fx:id="labelComentariosNuevos" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #388e3c;"/>
-        </VBox>
-        <VBox spacing="4" style="-fx-background-color: #fff3e0; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="180">
-            <Label text="Sin Respuesta" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
-            <Label fx:id="labelSinRespuesta" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #f57c00;"/>
-        </VBox>
-    </HBox>
+                <VBox spacing="6" alignment="TOP_LEFT">
+                    <Label text="GESTIÓN DE COMENTARIOS" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+                    <Label text="Administra las interacciones con voluntarios y gestiona sus comentarios en el foro."
+                           style="-fx-text-fill: gray;" wrapText="true"/>
+                </VBox>
 
-    <!-- Botones de acción -->
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button fx:id="btnRefrescar" text="🔄 Refrescar" 
-                style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold;"/>
-        <Button fx:id="btnGestionarVoluntarios" text="👥 Gestionar Voluntarios" 
-                style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-weight: bold;"/>
-        <Button fx:id="btnComentariosSinRespuesta" text="💬 Ver Sin Respuesta" 
-                style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold;"/>
-    </HBox>
+                <!-- Estadísticas rápidas -->
+                <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 10;">
+                    <VBox spacing="4" style="-fx-background-color: #e3f2fd; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="180">
+                        <Label text="Total Voluntarios" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                        <Label fx:id="labelTotalVoluntarios" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #1976d2;"/>
+                    </VBox>
+                    <VBox spacing="4" style="-fx-background-color: #e8f5e8; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="180">
+                        <Label text="Comentarios Nuevos" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                        <Label fx:id="labelComentariosNuevos" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #388e3c;"/>
+                    </VBox>
+                    <VBox spacing="4" style="-fx-background-color: #fff3e0; -fx-padding: 15; -fx-border-radius: 8; -fx-background-radius: 8;" prefWidth="180">
+                        <Label text="Sin Respuesta" style="-fx-font-weight: bold; -fx-font-size: 12;"/>
+                        <Label fx:id="labelSinRespuesta" text="0" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #f57c00;"/>
+                    </VBox>
+                </HBox>
 
-    <!-- Lista de voluntarios -->
-    <VBox spacing="10">
-        <Label text="Voluntarios Registrados" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
-        <ScrollPane fitToWidth="true" prefHeight="400" style="-fx-background-color: transparent;">
-            <FlowPane fx:id="flowPaneComentarios" hgap="20" vgap="20" prefWrapLength="800" 
-                      style="-fx-padding: 10;"/>
-        </ScrollPane>
-    </VBox>
+                <!-- Botones de acción -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="btnRefrescar" text="🔄 Refrescar" 
+                            style="-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <Button fx:id="btnGestionarVoluntarios" text="👥 Gestionar Voluntarios" 
+                            style="-fx-background-color: #17a2b8; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                    <Button fx:id="btnComentariosSinRespuesta" text="💬 Ver Sin Respuesta" 
+                            style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <!-- Lista de voluntarios -->
+                <VBox spacing="10" VBox.vgrow="ALWAYS">
+                    <Label text="Voluntarios Registrados" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                    <FlowPane fx:id="flowPaneComentarios" hgap="20" vgap="20" prefWrapLength="800" 
+                              style="-fx-padding: 10;"
+                              />
+                </VBox>
+
+            </VBox>
+        </content>
+    </ScrollPane>
 
 </VBox>

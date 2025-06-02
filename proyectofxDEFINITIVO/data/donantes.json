@@ -96,5 +96,31 @@
     "medicamento": false,
     "fechaRegistro": "2025-05-31",
     "montoTotalDonado": 0.0
+  },
+  {
+    "id": 9,
+    "nombre": "david",
+    "documento": "123123",
+    "email": "aaaa@aaa.com",
+    "telefono": "123123",
+    "direccion": "123123",
+    "dinero": false,
+    "alimento": true,
+    "medicamento": false,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
+  },
+  {
+    "id": 10,
+    "nombre": "pepe",
+    "documento": "222",
+    "email": "222",
+    "telefono": "222",
+    "direccion": "222",
+    "dinero": true,
+    "alimento": true,
+    "medicamento": true,
+    "fechaRegistro": "2025-05-31",
+    "montoTotalDonado": 0.0
   }
 ]

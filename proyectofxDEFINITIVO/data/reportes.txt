@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "titulo": "Reporte General Mensual",
+    "tipoReporte": "GENERAL",
+    "descripcion": "Reporte completo de actividades del mes",
+    "fechaGeneracion": "2025-05-31T22:54:15.7478354",
+    "generadoPor": "Sistema",
+    "estado": "GENERADO",
+    "datos": {
+      "totalVoluntarios": 10,
+      "totalAnimales": 7,
+      "totalComentarios": 6,
+      "montoTotalDonaciones": 700.0,
+      "totalAsignaciones": 7,
+      "fechaGeneracion": "2025-05-31T22:54:15.7508407",
+      "totalDonantes": 10
+    }
+  },
+  {
+    "id": 2,
+    "titulo": "Reporte de Donaciones",
+    "tipoReporte": "DONACIONES",
+    "descripcion": "Análisis de donaciones recibidas",
+    "fechaGeneracion": "2025-05-31T22:54:15.7568435",
+    "generadoPor": "Sistema",
+    "estado": "GENERADO",
+    "datos": {
+      "asignacionesPendientes": 7,
+      "totalAsignaciones": 7,
+      "asignacionesEntregadas": 0,
+      "totalDonantes": 10,
+      "montoTotal": 700.0
+    }
+  },
+  {
+    "id": 3,
+    "titulo": "Estado de Animales",
+    "tipoReporte": "ANIMALES",
+    "descripcion": "Resumen del estado de salud de todos los animales",
+    "fechaGeneracion": "2025-05-31T22:54:15.7593658",
+    "generadoPor": "Sistema",
+    "estado": "GENERADO",
+    "datos": {
+      "totalAnimales": 7,
+      "animalesCriticos": 2,
+      "animalesEnTratamiento": 2,
+      "animalesActivos": 2
+    }
+  },
+  {
+    "id": 4,
+    "titulo": "Actividad de Voluntarios",
+    "tipoReporte": "VOLUNTARIOS",
+    "descripcion": "Reporte de participación de voluntarios",
+    "fechaGeneracion": "2025-05-31T22:54:15.7633869",
+    "generadoPor": "Sistema",
+    "estado": "GENERADO",
+    "datos": {
+      "totalVoluntarios": 10,
+      "totalComentarios": 6,
+      "comentariosSinRespuesta": 6,
+      "voluntariosActivos": 10
+    }
+  },
+  {
+    "id": 5,
+    "titulo": "Reporte de donaciones",
+    "tipoReporte": "DONACIONES",
+    "descripcion": "",
+    "fechaGeneracion": "2025-05-31T22:54:22.6981445",
+    "generadoPor": "Usuario1234",
+    "estado": "GENERADO",
+    "datos": {
+      "asignacionesPendientes": 7,
+      "totalAsignaciones": 7,
+      "asignacionesEntregadas": 0,
+      "totalDonantes": 10,
+      "montoTotal": 700.0
+    }
+  }
+]

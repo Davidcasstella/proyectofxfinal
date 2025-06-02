@@ -6,65 +6,75 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="co.edu.uptc.controlador.ControladorReportes"
-      spacing="20" style="-fx-padding: 20; -fx-background-color: white;">
+      spacing="20"
+      style="-fx-padding: 20; -fx-background-color: white;"
+      >
 
     <VBox spacing="8" alignment="TOP_LEFT">
         <Label text="REPORTES" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
         <Label text="Generar, visualizar y descargar reportes de la fundación." style="-fx-text-fill: gray;"/>
     </VBox>
 
-    <HBox spacing="80" alignment="TOP_LEFT">
+    <!-- ScrollPane que ocupa TODO el espacio restante -->
+    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+        <content>
+            <VBox spacing="20" alignment="TOP_LEFT" style="-fx-padding: 0 0 20 0;">
 
-        <!-- Sección Generar Reportes -->
-        <VBox spacing="8" alignment="TOP_LEFT" prefWidth="300">
-            <VBox style="-fx-background-color: #007bff; -fx-padding: 30 20; -fx-pref-height: 140; -fx-border-radius: 8; -fx-background-radius: 8;">
-                <Label text="Generar" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22;"/>
-                <Label text="Reportes" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22;"/>
+                <HBox spacing="80" alignment="TOP_LEFT">
+
+                    <!-- Sección Generar Reportes -->
+                    <VBox spacing="8" alignment="TOP_LEFT" prefWidth="300">
+                        <VBox style="-fx-background-color: #007bff; -fx-padding: 30 20; -fx-pref-height: 140; -fx-border-radius: 8; -fx-background-radius: 8;">
+                            <Label text="Generar" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22;"/>
+                            <Label text="Reportes" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22;"/>
+                        </VBox>
+                        <Label text="Generar Reportes Personalizados" style="-fx-font-weight: bold;"/>
+                        <Label text="Crea reportes detallados sobre animales,"
+                               style="-fx-text-fill: gray; -fx-font-size: 12;" />
+                        <Label text="donaciones, voluntarios y actividades"
+                               style="-fx-text-fill: gray; -fx-font-size: 12;" />
+                        <Label text="de la fundación."
+                               style="-fx-text-fill: gray; -fx-font-size: 12;" />
+
+                        <Button text="Generar Reporte" fx:id="btnDescargarReporte"
+                                style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold;"
+                                prefWidth="150"/>
+                    </VBox>
+
+                    <!-- Sección Reportes de Voluntarios -->
+                    <VBox spacing="8" alignment="TOP_LEFT" prefWidth="300">
+                        <VBox style="-fx-background-color: #28a745; -fx-padding: 30 20; -fx-pref-height: 140; -fx-border-radius: 8; -fx-background-radius: 8;">
+                            <Label text="Voluntarios" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22;"/>
+                           <Label text="Comentarios" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;"/>
+
+                        </VBox>
+                        <Label text="Reporte de Voluntarios" style="-fx-font-weight: bold;"/>
+                        <Label text="Genera reportes sobre la actividad"
+                               style="-fx-text-fill: gray; -fx-font-size: 12;"/>
+                        <Label text="de voluntarios y sus comentarios"
+                               style="-fx-text-fill: gray; -fx-font-size: 12;"/>
+                        <Label text="en el sistema."
+                               style="-fx-text-fill: gray; -fx-font-size: 12;"/>
+                        <Button text="Reporte Voluntarios" fx:id="btnReciboVoluntarios"
+                                style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;"
+                                prefWidth="150"/>
+                    </VBox>
+
+                </HBox>
+
+                <!-- Sección de Reportes Recientes -->
+                <VBox spacing="10" alignment="TOP_LEFT">
+                    <Label text="Reportes Recientes" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
+                    <VBox fx:id="contenedorReportes" spacing="10" style="-fx-padding: 10;"/>
+                </VBox>
+
             </VBox>
-            <Label text="Generar Reportes Personalizados" style="-fx-font-weight: bold;"/>
-            <Label text="Crea reportes detallados sobre animales,"
-                   style="-fx-text-fill: gray; -fx-font-size: 12;" />
-            <Label text="donaciones, voluntarios y actividades"
-                   style="-fx-text-fill: gray; -fx-font-size: 12;" />
-            <Label text="de la fundación."
-                   style="-fx-text-fill: gray; -fx-font-size: 12;" />
-
-            <Button text="Generar Reporte" fx:id="btnDescargarReporte"
-                    style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold;"
-                    prefWidth="150"/>
-        </VBox>
-
-        <!-- Sección Reportes de Voluntarios -->
-        <VBox spacing="8" alignment="TOP_LEFT" prefWidth="300">
-            <VBox style="-fx-background-color: #28a745; -fx-padding: 30 20; -fx-pref-height: 140; -fx-border-radius: 8; -fx-background-radius: 8;">
-                <Label text="Voluntarios" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 22;"/>
-               <Label text="Comentarios" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;"/>
-
-            </VBox>
-            <Label text="Reporte de Voluntarios" style="-fx-font-weight: bold;"/>
-            <Label text="Genera reportes sobre la actividad"
-                   style="-fx-text-fill: gray; -fx-font-size: 12;"/>
-            <Label text="de voluntarios y sus comentarios"
-                   style="-fx-text-fill: gray; -fx-font-size: 12;"/>
-            <Label text="en el sistema."
-                   style="-fx-text-fill: gray; -fx-font-size: 12;"/>
-            <Button text="Reporte Voluntarios" fx:id="btnReciboVoluntarios"
-                    style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;"
-                    prefWidth="150"/>
-        </VBox>
-
-    </HBox>
-
-    <!-- Sección de Reportes Recientes -->
-    <VBox spacing="10" alignment="TOP_LEFT">
-        <Label text="Reportes Recientes" style="-fx-font-size: 18; -fx-font-weight: bold;"/>
-        <ScrollPane fitToWidth="true" prefHeight="300" style="-fx-background-color: transparent;">
-            <VBox fx:id="contenedorReportes" spacing="10" style="-fx-padding: 10;"/>
-        </ScrollPane>
-    </VBox>
+        </content>
+    </ScrollPane>
 
 </VBox>

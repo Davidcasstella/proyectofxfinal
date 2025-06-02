@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class ReporteDAOImpl implements ReporteDAO {
     
-    private static final String ARCHIVO_REPORTES = "reportes.json";
+    private static final String ARCHIVO_REPORTES = "reportes.txt";
     private static final Type TIPO_LISTA_REPORTES = new TypeToken<List<Reporte>>(){}.getType();
     
     private List<Reporte> reportes;
