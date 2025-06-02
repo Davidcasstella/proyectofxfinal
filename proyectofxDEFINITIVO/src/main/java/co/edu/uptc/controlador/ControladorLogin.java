@@ -3,6 +3,9 @@ package co.edu.uptc.controlador;
 import java.io.IOException;
 
 import co.edu.uptc.App;
+import co.edu.uptc.modelo.Usuario;
+import co.edu.uptc.servicio.UsuarioService;
+import co.edu.uptc.vista.LoginVista;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -37,11 +40,20 @@ public class ControladorLogin {
 
     @FXML private ImageView imageView;
 
-    // Ruta imagen, ajústala a tu proyecto
+    // Servicios y Vistas
+    private UsuarioService usuarioService;
+    private LoginVista loginVista;
+    private static Usuario usuarioActual;
+
+    // Ruta imagen
     private static final String IMAGE_PATH = "/co/edu/uptc/imagenes/images (1).jpg";
 
     @FXML
     public void initialize() {
+        // Inicializar servicios y vistas
+        usuarioService = new UsuarioService();
+        loginVista = new LoginVista();
+        
         // Cargar imagen
         Image img = new Image(getClass().getResourceAsStream(IMAGE_PATH));
         imageView.setImage(img);
@@ -50,42 +62,20 @@ public class ControladorLogin {
         mostrarLogin();
     }
 
-    // Mostrar formulario login y ocultar registro
+    // Mostrar formulario login
     @FXML
     private void mostrarLogin() {
-        tabLogin.setStyle("-fx-text-fill: #0066cc; -fx-font-weight: bold;");
-        tabRegister.setStyle("-fx-text-fill: #999999; -fx-font-weight: normal;");
-        loginForm.setVisible(true);
-        loginForm.setManaged(true);
-        registerForm.setVisible(false);
-        registerForm.setManaged(false);
+        loginVista.mostrarFormularioLogin(loginForm, registerForm, tabLogin, tabRegister);
         limpiarErroresLogin();
         limpiarErroresRegistro();
     }
 
-    // Mostrar formulario registro y ocultar login
+    // Mostrar formulario registro
     @FXML
     private void mostrarRegistro() {
-        tabRegister.setStyle("-fx-text-fill: #0066cc; -fx-font-weight: bold;");
-        tabLogin.setStyle("-fx-text-fill: #999999; -fx-font-weight: normal;");
-        registerForm.setVisible(true);
-        registerForm.setManaged(true);
-        loginForm.setVisible(false);
-        loginForm.setManaged(false);
+        loginVista.mostrarFormularioRegistro(loginForm, registerForm, tabLogin, tabRegister);
         limpiarErroresLogin();
         limpiarErroresRegistro();
-    }
-
-    // Validar email (simple)
-    private boolean isValidEmail(String email) {
-        return email.matches("^[A-Za-z0-9+_.-]+@(.+)$");
-    }
-
-    // Validar contraseña (mínimo 6 chars, al menos una letra y un número)
-    private boolean isValidPassword(String password) {
-        return password.length() >= 6 &&
-               password.matches(".*[A-Za-z].*") &&
-               password.matches(".*\\d.*");
     }
 
     // Validación en tiempo real email login
@@ -93,11 +83,11 @@ public class ControladorLogin {
     private void validateEmail(KeyEvent event) {
         String email = emailField.getText();
         if (email.isEmpty()) {
-            setError(emailField, emailErrorLabel, "El email es requerido.");
-        } else if (!isValidEmail(email)) {
-            setError(emailField, emailErrorLabel, "El email no es válido.");
+            loginVista.mostrarError(emailField, emailErrorLabel, "El email es requerido.");
+        } else if (!loginVista.validarEmail(email)) {
+            loginVista.mostrarError(emailField, emailErrorLabel, "El email no es válido.");
         } else {
-            clearError(emailField, emailErrorLabel);
+            loginVista.limpiarError(emailField, emailErrorLabel);
         }
     }
 
@@ -106,11 +96,11 @@ public class ControladorLogin {
     private void validatePassword(KeyEvent event) {
         String password = passwordField.getText();
         if (password.isEmpty()) {
-            setError(passwordField, passwordErrorLabel, "La contraseña es requerida.");
-        } else if (!isValidPassword(password)) {
-            setError(passwordField, passwordErrorLabel, "Debe tener al menos 6 caracteres, una letra y un número.");
+            loginVista.mostrarError(passwordField, passwordErrorLabel, "La contraseña es requerida.");
+        } else if (!loginVista.validarPassword(password)) {
+            loginVista.mostrarError(passwordField, passwordErrorLabel, "Debe tener al menos 6 caracteres, una letra y un número.");
         } else {
-            clearError(passwordField, passwordErrorLabel);
+            loginVista.limpiarError(passwordField, passwordErrorLabel);
         }
     }
 
@@ -121,29 +111,35 @@ public class ControladorLogin {
         String password = passwordField.getText();
 
         if (email.isEmpty()) {
-            setError(emailField, emailErrorLabel, "El email es requerido.");
+            loginVista.mostrarError(emailField, emailErrorLabel, "El email es requerido.");
             return;
-        } else if (!isValidEmail(email)) {
-            setError(emailField, emailErrorLabel, "El email no es válido.");
+        } else if (!loginVista.validarEmail(email)) {
+            loginVista.mostrarError(emailField, emailErrorLabel, "El email no es válido.");
             return;
         } else {
-            clearError(emailField, emailErrorLabel);
+            loginVista.limpiarError(emailField, emailErrorLabel);
         }
 
         if (password.isEmpty()) {
-            setError(passwordField, passwordErrorLabel, "La contraseña es requerida.");
+            loginVista.mostrarError(passwordField, passwordErrorLabel, "La contraseña es requerida.");
             return;
-        } else if (!isValidPassword(password)) {
-            setError(passwordField, passwordErrorLabel, "Debe tener al menos 6 caracteres, una letra y un número.");
+        } else if (!loginVista.validarPassword(password)) {
+            loginVista.mostrarError(passwordField, passwordErrorLabel, "Debe tener al menos 6 caracteres, una letra y un número.");
             return;
         } else {
-            clearError(passwordField, passwordErrorLabel);
+            loginVista.limpiarError(passwordField, passwordErrorLabel);
         }
 
-        // TODO: Lógica real login
-        mostrarAlerta("Éxito", "Inicio de sesión exitoso.", AlertType.INFORMATION);
-        // Cambiar pantalla o lo que quieras
-        App.setRoot("tercerapantalla");
+        // Autenticar usuario
+        Usuario usuario = usuarioService.autenticar(email, password);
+        
+        if (usuario != null) {
+            usuarioActual = usuario;
+            loginVista.mostrarAlerta("Éxito", "Inicio de sesión exitoso. Bienvenido " + usuario.getNombreCompleto(), AlertType.INFORMATION);
+            App.setRoot("PantallaDashboard");
+        } else {
+            loginVista.mostrarAlerta("Error", "Email o contraseña incorrectos.", AlertType.ERROR);
+        }
     }
 
     // Manejar registro
@@ -156,123 +152,85 @@ public class ControladorLogin {
         String confirmPass = confirmPasswordField.getText();
 
         if (nombre.isEmpty()) {
-            mostrarAlerta("Error", "El nombre completo es obligatorio.", AlertType.ERROR);
+            loginVista.mostrarAlerta("Error", "El nombre completo es obligatorio.", AlertType.ERROR);
             return;
         }
-        if (email.isEmpty() || !isValidEmail(email)) {
-            mostrarAlerta("Error", "Ingrese un correo válido.", AlertType.ERROR);
+        if (email.isEmpty() || !loginVista.validarEmail(email)) {
+            loginVista.mostrarAlerta("Error", "Ingrese un correo válido.", AlertType.ERROR);
             return;
         }
         if (recovery.isEmpty()) {
-            mostrarAlerta("Error", "El correo o número de recuperación es obligatorio.", AlertType.ERROR);
+            loginVista.mostrarAlerta("Error", "El correo o número de recuperación es obligatorio.", AlertType.ERROR);
             return;
         }
-        if (pass.isEmpty() || !isValidPassword(pass)) {
-            mostrarAlerta("Error", "Contraseña inválida. Debe tener al menos 6 caracteres, una letra y un número.", AlertType.ERROR);
+        if (pass.isEmpty() || !loginVista.validarPassword(pass)) {
+            loginVista.mostrarAlerta("Error", "Contraseña inválida. Debe tener al menos 6 caracteres, una letra y un número.", AlertType.ERROR);
             return;
         }
         if (!pass.equals(confirmPass)) {
-            mostrarAlerta("Error", "Las contraseñas no coinciden.", AlertType.ERROR);
+            loginVista.mostrarAlerta("Error", "Las contraseñas no coinciden.", AlertType.ERROR);
             return;
         }
 
-        // TODO: Guardar registro en base de datos o backend
-
-        mostrarAlerta("Éxito", "Registro exitoso.", AlertType.INFORMATION);
-        limpiarCamposRegistro();
-        mostrarLogin();
-    }
-
-    // Mensajes de alerta
-    private void mostrarAlerta(String titulo, String mensaje, AlertType tipo) {
-        Alert alert = new Alert(tipo);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
-    }
-
-    // Mostrar mensaje error y poner borde rojo
-    private void setError(TextField field, Label label, String mensaje) {
-        field.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
-        label.setText(mensaje);
-        label.setTextFill(javafx.scene.paint.Color.RED);
-    }
-
-    private void clearError(TextField field, Label label) {
-        field.setStyle("-fx-border-color: transparent;");
-        label.setText("");
-    }
-
-    private void limpiarErroresLogin() {
-        clearError(emailField, emailErrorLabel);
-        clearError(passwordField, passwordErrorLabel);
-    }
-
-    private void limpiarErroresRegistro() {
-        // Aquí podrías limpiar errores específicos del registro si los agregas
-    }
-
-    private void limpiarCamposRegistro() {
-        fullNameField.clear();
-        emailRegisterField.clear();
-        recoveryField.clear();
-        passwordRegisterField.clear();
-        confirmPasswordField.clear();
+        // Crear nuevo usuario
+        Usuario nuevoUsuario = new Usuario(nombre, email, pass, recovery);
+        
+        // Registrar en el servicio
+        if (usuarioService.registrarUsuario(nuevoUsuario)) {
+            loginVista.mostrarAlerta("Éxito", "Registro exitoso. Ya puedes iniciar sesión.", AlertType.INFORMATION);
+            loginVista.limpiarCamposRegistro(fullNameField, emailRegisterField, recoveryField, 
+                                            passwordRegisterField, confirmPasswordField);
+            mostrarLogin();
+        } else {
+            loginVista.mostrarAlerta("Error", "El email ya está registrado.", AlertType.ERROR);
+        }
     }
 
     // Manejar enlace "Olvidaste tu contraseña"
     @FXML
-    private void handleForgotPassword() {
-        mostrarAlerta("Recuperación de contraseña", "Por favor, sigue las instrucciones para recuperar tu contraseña.", AlertType.INFORMATION);
+    private void handleForgotPassword() throws IOException {
+        App.setRoot("PatallaCodigoRecuperacion");
     }
 
-    // Manejar botón Google
+    // Manejar botón Google - Ir directo a Dashboard
     @FXML
-    private void continuarConGoogle() {
-        mostrarAlerta("Google", "Funcionalidad para continuar con Google aún no implementada.", AlertType.INFORMATION);
+    private void continuarConGoogle() throws IOException {
+        loginVista.mostrarAlerta("Google", "Iniciando sesión con Google...", AlertType.INFORMATION);
+        App.setRoot("PantallaDashboard");
     }
 
-    // Navegación botones (si los tienes en pantalla)
+    // Navegación
     @FXML
-    private void RegarcarLogin() throws IOException {
+    private void reloadPage() throws IOException {
         App.setRoot("PantallaLogin");
     }
 
     @FXML
-    private void Regresar() throws IOException {
+    private void Antes() throws IOException {
         App.setRoot("PantallaBienvenido");
     }
 
     @FXML
-    private void SiguienteP() throws IOException {
-        App.setRoot("tercerapantalla");
-    }
-
-    @FXML
-    private void SiguientePa() throws IOException {
-        App.setRoot("tercerapantalla");
-    }
-
-
-
-      @FXML
     private void Siguiente() throws IOException {
-        // Recarga la página actual
-        App.setRoot("PatallaCodigoRecuperacion");  // Recargar la vista de la pantalla principal
-    }
-      @FXML
-    private void reloadPage() throws IOException {
-        // Recarga la página actual
-        App.setRoot("PantallaLogin");  // Recargar la vista de la pantalla principal
+        App.setRoot("PatallaCodigoRecuperacion");
     }
 
-       @FXML
-    private void Antes() throws IOException {
-        // Recarga la página actual
-        App.setRoot("PantallaBienvenido");  // Recargar la vista de la pantalla principal
+    // Métodos auxiliares
+    private void limpiarErroresLogin() {
+        loginVista.limpiarError(emailField, emailErrorLabel);
+        loginVista.limpiarError(passwordField, passwordErrorLabel);
     }
 
+    private void limpiarErroresRegistro() {
+        // Limpiar campos de registro si es necesario
+    }
 
-    
+    // Getter para usuario actual
+    public static Usuario getUsuarioActual() {
+        return usuarioActual;
+    }
+
+    public static void setUsuarioActual(Usuario usuario) {
+        usuarioActual = usuario;
+    }
 }

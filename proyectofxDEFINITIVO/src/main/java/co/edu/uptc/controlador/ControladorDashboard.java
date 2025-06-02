@@ -3,56 +3,34 @@ package co.edu.uptc.controlador;
 import java.io.IOException;
 import java.util.List;
 
+import co.edu.uptc.App;
 import co.edu.uptc.modelo.Asignacion;
+import co.edu.uptc.modelo.Usuario;
 import co.edu.uptc.servicio.FundacionService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import co.edu.uptc.App;
 
 public class ControladorDashboard {
 
-    @FXML
-    private Label labelDonantes, labelAnimales, labelDonaciones;
-
-    @FXML
-    private ListView<String> activityList;
-
-    @FXML
-    private ProgressBar progressBueno, progressRegular, progressCritico;
-
-    @FXML
-    private Label labelBueno, labelRegular, labelCritico;
-
-    @FXML
-    private LineChart<Number, Number> lineChart;
-
-    @FXML
-    private TabPane tabPane;
-
-    @FXML
-    private Tab tabDonantes;
-    @FXML
-    private Tab tabAnimales;
-    @FXML
-    private Tab tabAsignaciones;
-    @FXML
-    private Tab tabReportes;
-    @FXML
-    private Tab tabComentarios;
-    @FXML
-    private ImageView logoImage;
+    @FXML private Label labelDonantes, labelAnimales, labelDonaciones;
+    @FXML private ListView<String> activityList;
+    @FXML private ProgressBar progressBueno, progressRegular, progressCritico;
+    @FXML private Label labelBueno, labelRegular, labelCritico;
+    @FXML private LineChart<Number, Number> lineChart;
+    @FXML private TabPane tabPane;
+    @FXML private Tab tabDonantes;
+    @FXML private Tab tabAnimales;
+    @FXML private Tab tabAsignaciones;
+    @FXML private Tab tabReportes;
+    @FXML private Tab tabComentarios;
+    @FXML private ImageView logoImage;
 
     // Botones laterales para navegar entre pestañas
     @FXML private Button btnPrincipal;
@@ -61,6 +39,11 @@ public class ControladorDashboard {
     @FXML private Button btnAsignaciones;
     @FXML private Button btnReportes;
     @FXML private Button btnComentarios;
+
+    // Labels para mostrar información del usuario
+    @FXML private Label lblBienvenidoUsuario;
+    @FXML private Label lblNombreUsuario;
+    @FXML private Button btnCerrarSesion;
 
     // Control para no cargar la pantalla varias veces
     private boolean donantesCargado = false;
@@ -76,6 +59,9 @@ public class ControladorDashboard {
     public void initialize() {
         fundacionService = FundacionService.getInstance();
 
+        // Cargar información del usuario logueado
+        cargarInfoUsuario();
+
         // Cargar la imagen desde recursos
         try {
             Image logo = new Image(getClass().getResourceAsStream("/co/edu/uptc/imagenes/Logo.png"));
@@ -84,10 +70,15 @@ public class ControladorDashboard {
             System.err.println("No se pudo cargar el logo: " + e.getMessage());
         }
 
+        // Configurar botón de cerrar sesión
+        if (btnCerrarSesion != null) {
+            btnCerrarSesion.setOnAction(e -> cerrarSesion());
+        }
+
         // Cargar estadísticas reales desde la base de datos
         cargarEstadisticas();
         
-        // Preparar la gráfica con datos simulados (podrías hacer esto dinámico también)
+        // Preparar la gráfica con datos simulados
         prepararGrafica();
         
         // Cargar actividad reciente real
@@ -111,15 +102,62 @@ public class ControladorDashboard {
                 cargarPantallaComentarios();
                 actualizarColorBotones(btnComentarios);
             } else {
-                // Si seleccionan la pestaña principal (índice 0)
                 actualizarColorBotones(btnPrincipal);
-                // Recargar estadísticas cuando vuelvan al dashboard principal
                 cargarEstadisticas();
                 cargarActividadReciente();
             }
         });
 
-        // Configurar botones laterales para cambiar pestaña y actualizar color
+        // Configurar botones laterales
+        configurarBotonesLaterales();
+
+        // Inicializar color botón principal al cargar la app
+        actualizarColorBotones(btnPrincipal);
+    }
+
+    private void cargarInfoUsuario() {
+        Usuario usuarioActual = ControladorLogin.getUsuarioActual();
+        
+        if (usuarioActual != null) {
+            // Buscar los labels en el FXML para actualizar la información
+            // En tu FXML debes buscar estos labels:
+            // El label que dice "Bienvenido User1234 (Administrador)"
+            // Y el label que dice "User1234" en la esquina superior derecha
+            
+            // Actualizar los labels si existen
+            if (lblBienvenidoUsuario != null) {
+                lblBienvenidoUsuario.setText("Bienvenido " + usuarioActual.getNombreCompleto() + " (Administrador)");
+            }
+            
+            if (lblNombreUsuario != null) {
+                lblNombreUsuario.setText(usuarioActual.getEmail().split("@")[0]); // Mostrar solo la parte antes del @
+            }
+            
+            // Si no tienes estos fx:id en tu FXML, busca manualmente los labels
+            // O actualiza tu FXML agregando estos fx:id a los labels correspondientes
+        }
+    }
+
+    private void cerrarSesion() {
+        Alert confirmacion = new Alert(AlertType.CONFIRMATION);
+        confirmacion.setTitle("Cerrar Sesión");
+        confirmacion.setHeaderText("¿Estás seguro de que quieres cerrar sesión?");
+        confirmacion.setContentText("Serás redirigido a la pantalla de inicio.");
+
+        if (confirmacion.showAndWait().get() == ButtonType.OK) {
+            // Limpiar usuario actual
+            ControladorLogin.setUsuarioActual(null);
+            
+            try {
+                // Redirigir al login
+                App.setRoot("PantallaLogin");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void configurarBotonesLaterales() {
         btnPrincipal.setOnAction(e -> {
             tabPane.getSelectionModel().select(0);
             actualizarColorBotones(btnPrincipal);
@@ -146,9 +184,6 @@ public class ControladorDashboard {
             tabPane.getSelectionModel().select(tabComentarios);
             actualizarColorBotones(btnComentarios);
         });
-
-        // Inicializar color botón principal al cargar la app
-        actualizarColorBotones(btnPrincipal);
     }
 
     private void cargarEstadisticas() {
@@ -183,7 +218,6 @@ public class ControladorDashboard {
                 labelRegular.setText(String.valueOf(animalesRegulares));
                 labelCritico.setText(String.valueOf(animalesCriticos));
             } else {
-                // Si no hay animales, mostrar valores en cero
                 progressBueno.setProgress(0);
                 progressRegular.setProgress(0);
                 progressCritico.setProgress(0);
@@ -194,7 +228,6 @@ public class ControladorDashboard {
 
         } catch (Exception e) {
             System.err.println("Error cargando estadísticas: " + e.getMessage());
-            // Valores por defecto en caso de error
             labelDonantes.setText("0");
             labelAnimales.setText("0");
             labelDonaciones.setText("$0.00");
@@ -210,7 +243,7 @@ public class ControladorDashboard {
         lineChart.setCreateSymbols(false);
         lineChart.setLegendVisible(false);
 
-        // Datos simulados para la gráfica (puedes hacer esto dinámico)
+        // Datos simulados para la gráfica
         XYChart.Series<Number, Number> series = new XYChart.Series<>();
         series.getData().add(new XYChart.Data<>(23, 25000));
         series.getData().add(new XYChart.Data<>(24, 28000));
@@ -233,7 +266,6 @@ public class ControladorDashboard {
             if (asignacionesRecientes.isEmpty()) {
                 activityList.getItems().add("No hay actividad reciente");
             } else {
-                // Mostrar las 5 asignaciones más recientes
                 int limite = Math.min(5, asignacionesRecientes.size());
                 for (int i = 0; i < limite; i++) {
                     Asignacion asignacion = asignacionesRecientes.get(i);
@@ -247,7 +279,6 @@ public class ControladorDashboard {
                 }
             }
             
-            // Agregar algunas actividades estáticas adicionales si hay espacio
             if (activityList.getItems().size() < 5) {
                 activityList.getItems().add("Sistema iniciado - Hoy");
                 activityList.getItems().add("Base de datos actualizada - Hace 1 hora");
@@ -255,7 +286,6 @@ public class ControladorDashboard {
             
         } catch (Exception e) {
             System.err.println("Error cargando actividad reciente: " + e.getMessage());
-            // Actividades por defecto en caso de error
             activityList.getItems().clear();
             activityList.getItems().addAll(
                 "Sistema iniciado - Hoy",
@@ -286,9 +316,9 @@ public class ControladorDashboard {
         Button[] botones = { btnPrincipal, btnDonantes, btnAnimales, btnAsignaciones, btnReportes, btnComentarios };
         for (Button btn : botones) {
             if (btn == activo) {
-                btn.setStyle("-fx-background-color: #E9E9E9; -fx-text-fill: black;"); // color activo
+                btn.setStyle("-fx-background-color: #E9E9E9; -fx-text-fill: black;");
             } else {
-                btn.setStyle("-fx-background-color: transparent; -fx-text-fill: black;"); // color normal
+                btn.setStyle("-fx-background-color: transparent; -fx-text-fill: black;");
             }
         }
     }
@@ -360,19 +390,16 @@ public class ControladorDashboard {
 
     @FXML
     private void Siguienteeeee() throws IOException {
-        // Recarga la página actual
-        App.setRoot("PantallaDashboard");  // Recargar la vista de la pantalla principal
+        App.setRoot("PantallaDashboard");
     }
 
     @FXML
     private void reloadPageeeee() throws IOException {
-        // Recarga la página actual
-        App.setRoot("PantallaDashboard");  // Recargar la vista de la pantalla principal
+        App.setRoot("PantallaDashboard");
     }
 
     @FXML
     private void Antesssss() throws IOException {
-        // Cambia a la pantalla anterior
-        App.setRoot("PantallaCreaTuContraseña");  // Cambia la vista a otra pantalla
+        App.setRoot("PantallaCreaTuContraseña");
     }
 }

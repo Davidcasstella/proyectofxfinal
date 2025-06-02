@@ -65,18 +65,16 @@
 
             <!-- Encabezado -->
             <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 0 0 10 0; -fx-background-color: white;">
-                <ImageView fx:id="logoImage" fitHeight="40" fitWidth="40" pickOnBounds="true" preserveRatio="true">
-                    <!-- Puedes cargar la imagen desde el controlador -->
-                </ImageView>
+                <ImageView fx:id="logoImage" fitHeight="40" fitWidth="40" pickOnBounds="true" preserveRatio="true"/>
                 <VBox spacing="2">
                     <Label text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 16;"/>
-                    <Label text="Bienvenido User1234 (Administrador)" style="-fx-font-size: 12; -fx-text-fill: gray;"/>
+                    <Label fx:id="lblBienvenidoUsuario" text="Bienvenido User1234 (Administrador)" style="-fx-font-size: 12; -fx-text-fill: gray;"/>
                 </VBox>
                 <Pane HBox.hgrow="ALWAYS" />
                 <HBox spacing="8" alignment="CENTER_RIGHT">
                     <Label text="👤" style="-fx-font-size: 16;"/>
-                    <Label text="User1234" style="-fx-font-weight: bold;"/>
-                    <Button text="Cerrar Sesión" style="-fx-background-color: transparent; -fx-text-fill: black;"/>
+                    <Label fx:id="lblNombreUsuario" text="User1234" style="-fx-font-weight: bold;"/>
+                    <Button fx:id="btnCerrarSesion" text="Cerrar Sesión" style="-fx-background-color: transparent; -fx-text-fill: black;"/>
                 </HBox>
             </HBox>
 

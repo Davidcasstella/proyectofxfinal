@@ -3,6 +3,8 @@ package co.edu.uptc.controlador;
 import java.io.IOException;
 
 import co.edu.uptc.App;
+import co.edu.uptc.modelo.Usuario;
+import co.edu.uptc.servicio.UsuarioService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,19 +12,18 @@ import javafx.scene.control.PasswordField;
 
 public class ControladorTuPropiaContraseña {
 
-    @FXML
-    private PasswordField txtNuevaContrasena;
+    @FXML private PasswordField txtNuevaContrasena;
+    @FXML private PasswordField txtConfirmaContrasena;
+    @FXML private Label lblMensaje;
+    @FXML private Button btnSiguiente;
+
+    private UsuarioService usuarioService;
 
     @FXML
-    private PasswordField txtConfirmaContrasena;
+    public void initialize() {
+        usuarioService = new UsuarioService();
+    }
 
-    @FXML
-    private Label lblMensaje;
-
-    @FXML
-    private Button btnSiguiente;
-
-    // Método que se llama al presionar el botón "Siguiente" del formulario
     @FXML
     private void handleSiguiente() {
         lblMensaje.setStyle("-fx-text-fill: red;");
@@ -39,33 +40,52 @@ public class ControladorTuPropiaContraseña {
             return;
         }
 
+        if (!nuevaContrasena.matches(".*[A-Za-z].*") || !nuevaContrasena.matches(".*\\d.*")) {
+            lblMensaje.setText("La contraseña debe contener al menos una letra y un número.");
+            return;
+        }
+
         if (!nuevaContrasena.equals(confirmaContrasena)) {
             lblMensaje.setText("Las contraseñas no coinciden. Inténtelo de nuevo.");
             return;
         }
 
-        // Si pasa todas las validaciones
-        lblMensaje.setStyle("-fx-text-fill: green;");
-        lblMensaje.setText("¡Contraseña actualizada correctamente!");
-
-        // Aquí podrías agregar la lógica para guardar la contraseña o navegar a otra pantalla
+        // Obtener el usuario que está recuperando la contraseña
+        Usuario usuario = ControladorReceperacionDos.getUsuarioRecuperacion();
+        
+        if (usuario != null) {
+            // Actualizar la contraseña
+            if (usuarioService.actualizarPassword(usuario.getEmail(), nuevaContrasena)) {
+                lblMensaje.setStyle("-fx-text-fill: green;");
+                lblMensaje.setText("¡Contraseña actualizada correctamente!");
+                
+                // Esperar un momento y luego redirigir al login
+                try {
+                    Thread.sleep(1000);
+                    App.setRoot("PantallaLogin");
+                } catch (InterruptedException | IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                lblMensaje.setText("Error al actualizar la contraseña.");
+            }
+        } else {
+            lblMensaje.setText("Error: No se encontró el usuario.");
+        }
     }
 
-      @FXML
+    @FXML
     private void handleSiguienteBtn() throws IOException {
-        // Recarga la página actual
-        App.setRoot("PantallaDashboard");  // Recargar la vista de la pantalla principal
+        App.setRoot("PantallaLogin");
     }
     
-       @FXML
+    @FXML
     private void handleRecargar() throws IOException {
-        // Recarga la página actual
-        App.setRoot("PantallaCreaTuContraseña");  // Recargar la vista de la pantalla principal
+        App.setRoot("PantallaCreaTuContraseña");
     }
-        @FXML
+    
+    @FXML
     private void handleAnterior() throws IOException {
-        // Recarga la página actual
-        App.setRoot("PatallaCodigoRecuperaciontres");  // Recargar la vista de la pantalla principal
+        App.setRoot("PatallaCodigoRecuperaciontres");
     }
-
 }
