@@ -1,5 +1,11 @@
 [
   {
+    "nombreCompleto": "felipe",
+    "email": "felipe@gmail.com",
+    "password": "felipe1",
+    "correoRecuperacion": "felipe1@gmail.com"
+  },
+  {
     "nombreCompleto": "david lopez",
     "email": "amicopdavid@gmail.com",
     "password": "david23315",

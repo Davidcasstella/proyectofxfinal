@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioService {
-    private static final String ARCHIVO_USUARIOS = "usuarios.json";
+    private static final String ARCHIVO_USUARIOS = "data/usuarios.json";
     private final Gson gson;
     private List<Usuario> usuarios;
     
