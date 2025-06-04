@@ -212,7 +212,7 @@ public class ControladorLogin {
 
     @FXML
     private void Siguiente() throws IOException {
-        App.setRoot("PatallaCodigoRecuperacion");
+        App.setRoot("MainView");
     }
 
     // Métodos auxiliares

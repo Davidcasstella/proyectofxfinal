@@ -1,0 +1,177 @@
+/* Estilos generales */
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* Botones del menú lateral */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-padding: 8 15;
+    -fx-text-fill: #333;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.menu-button:hover {
+    -fx-background-color: #E0E0E0;
+    -fx-background-radius: 5;
+}
+
+.menu-button:pressed {
+    -fx-background-color: #D0D0D0;
+}
+
+/* Botón de mensajes */
+.messages-button {
+    -fx-background-color: #DDD;
+    -fx-padding: 10 20;
+    -fx-font-size: 13px;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.messages-button:hover {
+    -fx-background-color: #CCC;
+}
+
+/* Carousel */
+.carousel-container {
+    -fx-background-color: #000000;
+    -fx-padding: 40;
+    -fx-background-radius: 5;
+}
+
+.carousel-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.carousel-content {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-text-alignment: center;
+}
+
+.carousel-nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 36px;
+    -fx-padding: 0 20;
+    -fx-cursor: hand;
+}
+
+.carousel-nav-button:hover {
+    -fx-text-fill: #CCC;
+}
+
+/* Botones de acción */
+.primary-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-padding: 10 30;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+}
+
+.primary-button:hover {
+    -fx-background-color: #45A049;
+}
+
+.secondary-button {
+    -fx-background-color: #E0E0E0;
+    -fx-text-fill: #333;
+    -fx-padding: 10 30;
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #D0D0D0;
+}
+
+/* Formularios */
+.form-field {
+    -fx-padding: 8;
+    -fx-font-size: 14px;
+    -fx-background-radius: 3;
+    -fx-border-color: #DDD;
+    -fx-border-radius: 3;
+}
+
+.form-field:focused {
+    -fx-border-color: #4CAF50;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-padding: 8;
+    -fx-font-size: 14px;
+    -fx-background-radius: 3;
+    -fx-border-color: #DDD;
+    -fx-border-radius: 3;
+}
+
+/* Cards de animales */
+.animal-card {
+    -fx-border-color: lightgray;
+    -fx-border-radius: 5;
+    -fx-padding: 15;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.animal-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 3);
+}
+
+/* Vistas de pago */
+.payment-header {
+    -fx-background-color: #757575;
+    -fx-padding: 30;
+    -fx-background-radius: 10 10 0 0;
+}
+
+.payment-method-button {
+    -fx-background-color: #E0E0E0;
+    -fx-padding: 20;
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+}
+
+.payment-method-button:hover {
+    -fx-background-color: #D0D0D0;
+}
+
+/* Alertas y mensajes */
+.alert-info {
+    -fx-background-color: #E3F2FD;
+    -fx-border-color: #2196F3;
+    -fx-border-radius: 5;
+    -fx-padding: 15;
+}
+
+.alert-success {
+    -fx-background-color: #E8F5E9;
+    -fx-border-color: #4CAF50;
+    -fx-border-radius: 5;
+    -fx-padding: 15;
+}
+
+/* Scrollbar personalizada */
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+    -fx-background-color: #CCC;
+    -fx-background-radius: 5;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #999;
+}

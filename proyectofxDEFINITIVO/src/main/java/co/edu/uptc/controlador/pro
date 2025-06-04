@@ -1,0 +1,15 @@
+package co.edu.uptc.controller;
+
+import java.io.IOException;
+
+import co.edu.uptcApp;
+import co.edu.uptc.modelo.Animall;
+import co.edu.uptc.modelo.ChatManager;
+import co.edu.uptc.modelo.Donacion;
+import co.edu.uptc.modelo.Usuarioo;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;

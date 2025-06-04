@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uptc.controlador.PerfilPublicoController"
+      spacing="20" alignment="CENTER"
+      style="-fx-padding: 20; -fx-background-color: #f5f5f5;">
+    
+    <HBox spacing="20">
+        <!-- LADO IZQUIERDO -->
+        <VBox alignment="CENTER" spacing="10" prefWidth="250"
+              style="-fx-background-color: #e0e0e0; -fx-padding: 20; -fx-background-radius: 10;">
+            <Circle fx:id="fotoPerfil" radius="75" fill="GRAY"/>
+            <Label fx:id="nombreLabel" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+            <Label text="“Voluntario”"/>
+            <VBox spacing="5">
+                <Label fx:id="correoLabel"/>
+                <Label fx:id="telefonoLabel"/>
+                <Label fx:id="ubicacionLabel"/>
+                <Label fx:id="edadLabel"/>
+            </VBox>
+        </VBox>
+
+        <!-- LADO DERECHO -->
+        <VBox spacing="10" alignment="TOP_LEFT">
+            <TitledPane text="Biografía:" expanded="true">
+                <Label fx:id="biografiaLabel" wrapText="true"/>
+            </TitledPane>
+            <TitledPane text="Metas:" expanded="true">
+                <VBox fx:id="metasList" spacing="5"/>
+            </TitledPane>
+            <TitledPane text="Frustraciones:" expanded="true">
+                <Label fx:id="frustracionesLabel" wrapText="true"/>
+            </TitledPane>
+            <TitledPane text="Motivaciones:" expanded="true">
+                <Label fx:id="motivacionesLabel" wrapText="true"/>
+            </TitledPane>
+            <TitledPane text="Personalidad:" expanded="true">
+                <VBox fx:id="personalidadList" spacing="5"/>
+            </TitledPane>
+        </VBox>
+    </HBox>
+
+    
+</VBox>

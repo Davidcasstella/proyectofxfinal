@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uptc.controlador.HistorialController">
+    <children>
+        <VBox spacing="10"
+              AnchorPane.topAnchor="10"
+              AnchorPane.leftAnchor="10"
+              AnchorPane.rightAnchor="10"
+              AnchorPane.bottomAnchor="10">
+            <Label text="Historial de Donaciones" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+            <Label text="Aquí puedes consultar y verificar tus donaciones." style="-fx-font-size: 14px;" />
+            
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <FlowPane fx:id="contenedorTarjetas"
+                          hgap="20"
+                          vgap="20"
+                          prefWrapLength="600">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20" />
+                    </padding>
+                </FlowPane>
+            </ScrollPane>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -70,5 +70,17 @@
     "estado": "NUEVO",
     "prioridad": "BAJA",
     "publico": true
+  },
+  {
+    "id": 7,
+    "voluntarioId": 7,
+    "nombreVoluntario": "Andrés Torres",
+    "titulo": "qragas",
+    "contenido": "\u003cfbabr",
+    "categoria": "REPORTE",
+    "fechaCreacion": "2025-06-03T11:02:12.3042337",
+    "estado": "NUEVO",
+    "prioridad": "MEDIA",
+    "publico": true
   }
 ]

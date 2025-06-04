@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+
+
+
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uptc.controlador.MainController"
+            style="-fx-background-color: #E9DEDE;">
+
+    <!-- HEADER -->
+    <top>
+        <HBox spacing="2" alignment="CENTER_LEFT" style="-fx-background-color: #FFFFFF; -fx-padding: 10 20 10 20;">
+            <!-- Se elimina el Region HBox.hgrow="ALWAYS" para evitar el centrado -->
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                    <Button text="←" onAction="#Antesssss"
+                            style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; 
+                                   -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+                    <Button text="→" onAction="#Siguienteeeee"
+                            style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px; 
+                                   -fx-background-color: rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;" />
+                    <Button text="↻" onAction="#reloadPageeeee"
+                            style="-fx-font-size: 12px; -fx-padding: 4px; -fx-min-width: 30px; -fx-min-height: 30px;" />
+            </HBox>
+
+            <!-- Logo y Títulos alineados a la izquierda -->
+            <VBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10;">
+                <Label text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Label text="Bienvenido User5678 (Voluntario)" style="-fx-font-size: 11px; -fx-text-fill: #666;"/>
+                  <!-- Panel con pestañas -->
+            <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" style="-fx-background-color: transparent;">
+                
+                <Tab fx:id="tabPrincipal"  text="Principal" />          
+                <Tab fx:id="tabDonar"  text="Donar" />
+                
+                <Tab fx:id="tabHistorial" text="Historial" />
+                <Tab fx:id="tabForo" text="Foro" />
+                <Tab fx:id="tabGestionar" text="GestionarCuenta" />
+            </TabPane>
+            </VBox>
+
+            <!-- Resto del header con la etiqueta y botón -->
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="👤 User5678" style="-fx-font-size: 12px;"/>
+            <Button fx:id="btnLogout" text="Cerrar Sesión" style="-fx-background-color: transparent; -fx-font-size: 12px; -fx-text-fill: #333;"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <center>
+        <HBox style="-fx-background-color: #E9DEDE;">
+            <!-- MENÚ LATERAL -->
+            <VBox spacing="0" style="-fx-background-color: #FFFFFF; -fx-padding: 20 10 20 20;" prefWidth="150">
+                <Label text="FUNDACIÓN" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+                <Label text="GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+
+                <VBox spacing="5" style="-fx-padding: 20 0 0 0;">
+                    <Label text="Explora" style="-fx-font-size: 11px; -fx-text-fill: #666; -fx-padding: 0 0 10 0;"/>
+
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="🏠" style="-fx-font-size: 14px;"/>
+                        <Button fx:id="btnPrincipal" text="Principal" style="-fx-background-color: transparent; -fx-padding: 5 10; -fx-font-size: 13px;" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="💖" style="-fx-font-size: 14px;"/>
+                        <Button fx:id="btnDonar" text="Donar" style="-fx-background-color: transparent; -fx-padding: 5 10; -fx-font-size: 13px;" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="📜" style="-fx-font-size: 14px;"/>
+                        <Button fx:id="btnHistorial" text="Historial" style="-fx-background-color: transparent; -fx-padding: 5 10; -fx-font-size: 13px;" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="💬" style="-fx-font-size: 14px;"/>
+                        <Button fx:id="btnForo" text="Foro" style="-fx-background-color: transparent; -fx-padding: 5 10; -fx-font-size: 13px;" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="👤" style="-fx-font-size: 14px;"/>
+                        <Button fx:id="btnGestionPerfil" text="Gestionar cuenta" style="-fx-background-color: transparent; -fx-padding: 5 10; -fx-font-size: 13px;" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
+                <Button fx:id="btnMensajes" text="💬 Mensajes" style="-fx-background-color: #DDD; -fx-padding: 10 20; -fx-font-size: 13px; -fx-background-radius: 5;" maxWidth="Infinity"/>
+            </VBox>
+
+            <!-- CONTENIDO CENTRAL -->
+            <StackPane fx:id="contentPane" HBox.hgrow="ALWAYS" style="-fx-background-color: #FFFFFF; -fx-padding: 10;">
+                <!-- El contenido se cargará dinámicamente aquí -->
+            </StackPane>
+        </HBox>
+    </center>
+</BorderPane>

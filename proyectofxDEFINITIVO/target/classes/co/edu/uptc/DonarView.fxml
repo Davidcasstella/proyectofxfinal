@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="co.edu.uptc.controlador.DonarController">
+    <VBox spacing="15" alignment="TOP_LEFT" 
+          AnchorPane.topAnchor="10.0" 
+          AnchorPane.leftAnchor="10.0" 
+          AnchorPane.rightAnchor="10.0" 
+          AnchorPane.bottomAnchor="10.0">
+        
+        <Label text="Donar" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <Label text="Selecciona un animalito para continuar con tu donación" style="-fx-font-size: 14px;" />
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+            <VBox fx:id="animalList" spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+        
+    </VBox>
+</AnchorPane>

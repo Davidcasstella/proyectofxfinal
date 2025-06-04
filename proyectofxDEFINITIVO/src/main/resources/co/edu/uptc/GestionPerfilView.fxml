@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uptc.controlador.GestionPerfilController">
+
+    <left>
+        <VBox spacing="10" alignment="TOP_CENTER" prefWidth="250" style="-fx-background-color: #E5E5E5;">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <ImageView fitHeight="140" fitWidth="140" style="-fx-background-color: gray; -fx-border-radius: 70;" />
+            <Label text="Juan Pérez" style="-fx-font-weight: bold; -fx-font-size: 16px;" />
+            <Label text="&quot;Voluntario&quot;" />
+            <VBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="DATOS PERSONALES" style="-fx-font-weight: bold;" />
+
+                <Label text="Correo:" style="-fx-font-weight: bold;" />
+                <TextField fx:id="txtCorreo" text="juan.perez@gmail.com" editable="false" />
+
+                <Label text="Teléfono:" style="-fx-font-weight: bold;" />
+                <TextField fx:id="txtTelefono" text="1234-5678" editable="false" />
+
+                <Label text="Ubicación:" style="-fx-font-weight: bold;" />
+                <TextField fx:id="txtUbicacion" text="Sogamoso" editable="false" />
+
+                <Label text="Edad:" style="-fx-font-weight: bold;" />
+                <TextField fx:id="txtEdad" text="00" editable="false" />
+            </VBox>
+
+            <Button fx:id="btnEditar" text="Editar" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <VBox>
+                <Label text="Biografía:" style="-fx-font-weight: bold;" />
+                <TextArea fx:id="txtBiografia" prefRowCount="3" />
+            </VBox>
+
+            <HBox spacing="10">
+                <VBox prefWidth="300">
+                    <Label text="Metas:" style="-fx-font-weight: bold;" />
+                    <TextArea fx:id="txtMetas" />
+                </VBox>
+
+                <VBox prefWidth="300">
+                    <Label text="Motivaciones:" style="-fx-font-weight: bold;" />
+                    <TextArea fx:id="txtMotivaciones" />
+                </VBox>
+            </HBox>
+
+            <HBox spacing="10">
+                <VBox prefWidth="300">
+                    <Label text="Frustraciones:" style="-fx-font-weight: bold;" />
+                    <TextArea fx:id="txtFrustraciones" />
+                </VBox>
+
+                <VBox prefWidth="300">
+                    <Label text="Personalidad:" style="-fx-font-weight: bold;" />
+                    <ListView fx:id="lstPersonalidad" prefHeight="80"/>
+                </VBox>
+            </HBox>
+
+            <Button fx:id="btnActualizar" text="Actualizar" alignment="CENTER" maxWidth="100" />
+        </VBox>
+    </center>
+</BorderPane>

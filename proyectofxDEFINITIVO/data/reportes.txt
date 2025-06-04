@@ -8,13 +8,13 @@
     "generadoPor": "Sistema",
     "estado": "GENERADO",
     "datos": {
-      "totalVoluntarios": 10,
-      "totalAnimales": 7,
-      "totalComentarios": 6,
+      "totalVoluntarios": 10.0,
+      "totalAnimales": 7.0,
+      "totalComentarios": 6.0,
       "montoTotalDonaciones": 700.0,
-      "totalAsignaciones": 7,
+      "totalAsignaciones": 7.0,
       "fechaGeneracion": "2025-05-31T22:54:15.7508407",
-      "totalDonantes": 10
+      "totalDonantes": 10.0
     }
   },
   {
@@ -26,10 +26,10 @@
     "generadoPor": "Sistema",
     "estado": "GENERADO",
     "datos": {
-      "asignacionesPendientes": 7,
-      "totalAsignaciones": 7,
-      "asignacionesEntregadas": 0,
-      "totalDonantes": 10,
+      "asignacionesPendientes": 7.0,
+      "totalAsignaciones": 7.0,
+      "asignacionesEntregadas": 0.0,
+      "totalDonantes": 10.0,
       "montoTotal": 700.0
     }
   },
@@ -42,10 +42,10 @@
     "generadoPor": "Sistema",
     "estado": "GENERADO",
     "datos": {
-      "totalAnimales": 7,
-      "animalesCriticos": 2,
-      "animalesEnTratamiento": 2,
-      "animalesActivos": 2
+      "totalAnimales": 7.0,
+      "animalesCriticos": 2.0,
+      "animalesEnTratamiento": 2.0,
+      "animalesActivos": 2.0
     }
   },
   {
@@ -57,10 +57,10 @@
     "generadoPor": "Sistema",
     "estado": "GENERADO",
     "datos": {
-      "totalVoluntarios": 10,
-      "totalComentarios": 6,
-      "comentariosSinRespuesta": 6,
-      "voluntariosActivos": 10
+      "totalVoluntarios": 10.0,
+      "totalComentarios": 6.0,
+      "comentariosSinRespuesta": 6.0,
+      "voluntariosActivos": 10.0
     }
   },
   {
@@ -72,11 +72,26 @@
     "generadoPor": "Usuario1234",
     "estado": "GENERADO",
     "datos": {
-      "asignacionesPendientes": 7,
-      "totalAsignaciones": 7,
-      "asignacionesEntregadas": 0,
-      "totalDonantes": 10,
+      "asignacionesPendientes": 7.0,
+      "totalAsignaciones": 7.0,
+      "asignacionesEntregadas": 0.0,
+      "totalDonantes": 10.0,
       "montoTotal": 700.0
+    }
+  },
+  {
+    "id": 6,
+    "titulo": "Reporte de Actividad de Voluntarios",
+    "tipoReporte": "VOLUNTARIOS",
+    "descripcion": "Reporte detallado de la actividad y comentarios de voluntarios",
+    "fechaGeneracion": "2025-06-03T10:10:28.8510038",
+    "generadoPor": "Usuario1234",
+    "estado": "GENERADO",
+    "datos": {
+      "totalVoluntarios": 10,
+      "totalComentarios": 6,
+      "comentariosSinRespuesta": 6,
+      "voluntariosActivos": 10
     }
   }
 ]

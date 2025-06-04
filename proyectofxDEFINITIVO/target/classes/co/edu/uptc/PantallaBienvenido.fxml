@@ -9,48 +9,48 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uptc.controlador.ControladorBienvenido">
     <children>
         <!-- Contenedor HBox para Logo y Título -->
         <HBox layoutX="120" layoutY="20" spacing="10">
-            <!-- Logo -->
             <ImageView fx:id="logo" fitHeight="80" fitWidth="80" />
-            <!-- Título de la Fundación -->
-            <Label text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-size: 30px; -fx-font-weight: bold;" />
+            <Label fx:id="labelTitle" text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-size: 30px; -fx-font-weight: bold;" />
         </HBox>
-        
+
         <!-- Slogan -->
-        <Label text="Cuidando vidas, creando futuro" layoutX="210" layoutY="60" style="-fx-font-size: 18px; color: #777;" />
+        <Label fx:id="labelSlogan" text="Cuidando vidas, creando futuro" layoutX="210" layoutY="60" style="-fx-font-size: 18px; color: #777;" />
 
         <!-- Descripción Quiénes somos -->
-        <Label text="¿Quiénes somos?" layoutX="120" layoutY="100" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-        <TextArea text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a ornare quam, eget pellentesque felis. Praesent cursus, quam non eleifend vehicula, mi ante feugiat erat, in mollis diam sapien vel ligula. Suspendisse justo metus, congue ut vestibulum in, mattis in velit. Nam eu auctor est. Nunc nisi dolor, consectetur vitae dignissim ut, maximus eu tellus. Ut auctor consectetur vehicula. Duis suscipit velit sit amet leo pellentesque, et hendrerit odio efficitur."
-                  layoutX="120" layoutY="130" prefHeight="150" prefWidth="550" wrapText="true" style="-fx-font-size: 14px; -fx-background-color: #f0f0f0; -fx-border-color: #ccc;" editable="false"/>
+        <Label fx:id="labelWhoWeAre" text="¿Quiénes somos?" layoutX="120" layoutY="100" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        
+        <TextArea fx:id="textAreaWhoWeAre" text="En Fundación GarrasyBigotes nos dedicamos al rescate y cuidado de animales en situación de calle, brindándoles atención veterinaria, alimentación y un espacio seguro donde puedan rehabilitarse física y emocionalmente. Trabajamos con amor y compromiso para darles una segunda oportunidad a estos seres maravillosos, promoviendo la adopción responsable y el respeto hacia todos los animales." 
+          layoutX="120" layoutY="130" prefHeight="150" prefWidth="550" wrapText="true" style="-fx-font-size: 14px; -fx-background-color: #f0f0f0; -fx-border-color: #ccc;" editable="false"/>
 
         <!-- Descripción Quieres formar parte -->
-        <Label text="¿Quieres hacer parte de nuestro equipo?" layoutX="120" layoutY="300" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-        
-        <!-- Usamos un TextArea para mostrar el párrafo largo -->
-        <TextArea text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a ornare quam, eget pellentesque felis. Praesent cursus, quam non eleifend vehicula, mi ante feugiat erat, in mollis diam sapien vel ligula. Suspendisse justo metus, congue ut vestibulum in, mattis in velit. Nam eu auctor est. Nunc nisi dolor, consectetur vitae dignissim ut, maximus eu tellus. Ut auctor consectetur vehicula. Duis suscipit velit sit amet leo pellentesque, et hendrerit odio efficitur."
-                  layoutX="120" layoutY="330" prefHeight="150" prefWidth="550" wrapText="true" style="-fx-font-size: 14px; -fx-background-color: #f0f0f0; -fx-border-color: #ccc;" editable="false"/>
+        <Label fx:id="labelJoinUs" text="¿Quieres hacer parte de nuestro equipo?" layoutX="120" layoutY="300" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+         <TextArea fx:id="textAreaJoinUs" text="Si eres amante de los animales y deseas hacer la diferencia, te invitamos a ser parte de nuestra misión. Puedes unirte como voluntario, adoptante o colaborador. Juntos podemos mejorar la vida de muchos animales que lo necesitan. ¡Tu ayuda es fundamental para seguir adelante con este hermoso proyecto!" 
+          layoutX="120" layoutY="330" prefHeight="150" prefWidth="550" wrapText="true" style="-fx-font-size: 14px; -fx-background-color: #f0f0f0; -fx-border-color: #ccc;" editable="false"/>
 
         <!-- Botones de inicio de sesión y creación de cuenta -->
         <HBox layoutX="250" layoutY="500" spacing="20" alignment="CENTER">
-            <Button text="Iniciar Sesión" fx:id="btnLogin" onAction="#switchToLogin" style="-fx-font-size: 14px; -fx-padding: 10px 20px;" />
-            <Button text="Crear Cuenta" fx:id="btnCreateAccount" onAction="#switchToLogin" style="-fx-font-size: 14px; -fx-padding: 10px 20px;" />
+            <Button fx:id="btnLogin" text="Iniciar Sesión" onAction="#switchToLogin" style="-fx-font-size: 14px; -fx-padding: 10px 20px;" />
+            <Button fx:id="btnCreateAccount" text="Crear Cuenta" onAction="#switchToLogin" style="-fx-font-size: 14px; -fx-padding: 10px 20px;" />
         </HBox>
 
-         <!-- Botón para ir a la pantalla siguiente pantalla -->
-         <Button layoutX="40" layoutY="20" text="→" onAction="#Siguiente" style="-fx-font-size: 14px; -fx-padding: 2px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color:rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;"/>
+        <!-- Botón para cambiar el idioma -->
+        <Button text="Cambiar Idioma" layoutX="950" layoutY="20" onAction="#changeLanguage" style="-fx-font-size: 14px; -fx-padding: 10px 20px;"/>
+
+        <!-- Botón para ir a la pantalla siguiente pantalla -->
+        <Button layoutX="40" layoutY="20" text="→" onAction="#Siguiente" style="-fx-font-size: 14px; -fx-padding: 2px; -fx-min-width: 30px; -fx-min-height: 30px; -fx-background-color:rgb(100, 103, 107); -fx-text-fill: white; -fx-border-radius: 15px;"/>
 
         <!-- Botón para recargar la página -->
         <Button layoutX="70" layoutY="20" text="↻" onAction="#reloadPage" style="-fx-font-size: 14px; -fx-padding: 2px; -fx-min-width: 30px; -fx-min-height: 30px;" />
 
         <!-- Mensaje de agradecimiento -->
-        <Label text="¡Gracias por apoyarnos, miles de animalitos te lo agradecerán siempre!" layoutX="160" layoutY="570" style="-fx-font-size: 14px; color: #777;" />
+        <Label fx:id="labelThankYou" text="¡Gracias por apoyarnos!" layoutX="160" layoutY="570" style="-fx-font-size: 14px; color: #777;" />
 
-        <!-- Imagen al lado derecho (más grande) -->
+        <!-- Imagen lateral -->
         <ImageView fx:id="sideImage" layoutX="750" layoutY="90" fitHeight="500" fitWidth="500" preserveRatio="true" />
     </children>
 </AnchorPane>

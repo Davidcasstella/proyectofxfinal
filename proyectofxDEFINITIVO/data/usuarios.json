@@ -2,7 +2,7 @@
   {
     "nombreCompleto": "felipe",
     "email": "felipe@gmail.com",
-    "password": "felipe1",
+    "password": "felipe123",
     "correoRecuperacion": "felipe1@gmail.com"
   },
   {
@@ -10,5 +10,11 @@
     "email": "amicopdavid@gmail.com",
     "password": "david23315",
     "correoRecuperacion": "imagedavid45@gmail.com"
+  },
+  {
+    "nombreCompleto": "andrea",
+    "email": "andrea@gmail.com",
+    "password": "andrea987",
+    "correoRecuperacion": "andrea1@gmail.com"
   }
 ]

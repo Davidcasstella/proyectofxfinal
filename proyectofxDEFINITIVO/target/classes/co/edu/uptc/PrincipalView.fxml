@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="co.edu.uptc.controlador.PrincipalController"
+      style="-fx-padding: 20; -fx-background-color: #E9DEDE;">
+    
+    <!-- TABS -->
+    
+    <!-- CAROUSEL -->
+    <StackPane style="-fx-background-color: #000000; -fx-padding: 40; -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER" spacing="20">
+            <Label fx:id="slideTitle" text="DIAPOSITIVA 1" 
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label fx:id="slideContent" 
+                   text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.&#10;Vestibulum ut tortor metus. Maecenas elit arcu, faucibus&#10;a dolor vel, ornare porttitor nisl." 
+                   style="-fx-text-fill: white; -fx-font-size: 14px; -fx-text-alignment: center;"
+                   wrapText="true" textAlignment="CENTER"/>
+            <Button text="Button" style="-fx-background-color: #555; -fx-text-fill: white; -fx-padding: 10 30;"/>
+        </VBox>
+        
+        <!-- Controles del carousel -->
+        <HBox alignment="CENTER_LEFT" StackPane.alignment="CENTER_LEFT">
+            <Button fx:id="btnPrev" text="&lt;" onAction="#prevSlide"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 36px; -fx-padding: 0 20;"/>
+        </HBox>
+        
+        <HBox alignment="CENTER_RIGHT" StackPane.alignment="CENTER_RIGHT">
+            <Button fx:id="btnNext" text="&gt;" onAction="#nextSlide"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 36px; -fx-padding: 0 20;"/>
+        </HBox>
+        
+        <!-- Indicadores -->
+        <HBox alignment="BOTTOM_CENTER" spacing="10" StackPane.alignment="BOTTOM_CENTER" style="-fx-padding: 0 0 20 0;">
+            <Circle fx:id="dot1" radius="5" fill="WHITE"/>
+            <Circle fx:id="dot2" radius="5" fill="#666666"/>
+            <Circle fx:id="dot3" radius="5" fill="#666666"/>
+            <Circle fx:id="dot4" radius="5" fill="#666666"/>
+            <Circle fx:id="dot5" radius="5" fill="#666666"/>
+        </HBox>
+    </StackPane>
+    
+    <!-- INFO SECTION -->
+    <VBox alignment="CENTER" spacing="5" style="-fx-padding: 20; -fx-background-color: #F5F5F5; -fx-background-radius: 5;">
+        <Label text="FUNDACIÓN GARRAS Y BIGOTES" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+        <Label text="Cuidando vidas, creando futuros" style="-fx-font-style: italic; -fx-text-fill: #666;"/>
+    </VBox>
+</VBox>

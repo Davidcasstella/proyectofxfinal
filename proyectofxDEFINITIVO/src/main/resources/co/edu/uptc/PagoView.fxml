@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="co.edu.uptc.controlador.PagoController">
+    
+    <!-- Vista 1: Métodos de pago -->
+    <VBox fx:id="metodoPagoView" spacing="20" alignment="CENTER" style="-fx-padding: 30; -fx-background-color: white;" maxWidth="600">
+        
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #757575; -fx-padding: 30; -fx-background-radius: 10 10 0 0;" maxWidth="Infinity">
+            <Label text="Pagar" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+            <Circle radius="40" fill="#424242" />
+        </VBox>
+        
+        <VBox spacing="15" style="-fx-padding: 20;">
+            <Label text="Métodos de pago" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            
+            <HBox spacing="15">
+                <Button prefWidth="80" prefHeight="80" style="-fx-background-color: #E0E0E0;" onAction="#selectPSE">
+                    <graphic>
+                        <Label text="PSE" style="-fx-font-weight: bold;"/>
+                    </graphic>
+                </Button>
+                <Button prefWidth="80" prefHeight="80" style="-fx-background-color: #E0E0E0;" onAction="#selectCard">
+                    <graphic>
+                        <Label text="💳" style="-fx-font-size: 24px;"/>
+                    </graphic>
+                </Button>
+                <Button prefWidth="80" prefHeight="80" style="-fx-background-color: #E0E0E0;">
+                    <graphic>
+                        <Label text="🏦" style="-fx-font-size: 24px;"/>
+                    </graphic>
+                </Button>
+                <Button prefWidth="80" prefHeight="80" style="-fx-background-color: #E0E0E0;">
+                    <graphic>
+                        <Label text="💵" style="-fx-font-size: 24px;"/>
+                    </graphic>
+                </Button>
+                <Button prefWidth="80" prefHeight="80" style="-fx-background-color: #E0E0E0;">
+                    <graphic>
+                        <Label text="📱" style="-fx-font-size: 24px;"/>
+                    </graphic>
+                </Button>
+            </HBox>
+        </VBox>
+        
+    </VBox>
+    
+    <!-- Vista 2: Datos de tarjeta -->
+    <VBox fx:id="datosTarjetaView" spacing="20" alignment="CENTER" style="-fx-padding: 30; -fx-background-color: white;" maxWidth="600" visible="false">
+        
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #757575; -fx-padding: 30; -fx-background-radius: 10 10 0 0;" maxWidth="Infinity">
+            <Label text="Pagar" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+        </VBox>
+        
+        <VBox spacing="20" style="-fx-padding: 30;">
+            <Label text="Tus datos de pago" style="-fx-font-size: 20px; -fx-font-weight: bold;" alignment="CENTER"/>
+            
+            <VBox spacing="5">
+                <Label text="Titular de la tarjeta" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="txtTitular" promptText="Ej. Rodolfo Rivera"/>
+            </VBox>
+            
+            <VBox spacing="5">
+                <Label text="Número de la tarjeta" style="-fx-font-weight: bold;"/>
+                <TextField fx:id="txtNumeroTarjeta" promptText="XXXX XXXX XXXX XXXX"/>
+            </VBox>
+            
+            <HBox spacing="20">
+                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                    <Label text="Fecha de vencimiento" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="txtFechaVencimiento" promptText="MM/YYYY"/>
+                </VBox>
+                <VBox spacing="5">
+                    <Label text="CVV" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="txtCVV" promptText="Ej. 123" prefWidth="100"/>
+                </VBox>
+            </HBox>
+            
+            <VBox alignment="CENTER" spacing="5" style="-fx-padding: 20 0;">
+                <Label text="Monto total" style="-fx-font-size: 16px;"/>
+                <Label fx:id="lblMontoTotal" text="$00000 COP" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            </VBox>
+            
+            <CheckBox text="Guardar datos para futuras compras"/>
+            
+            <Button text="Siguiente" onAction="#procesarPago" 
+                    style="-fx-padding: 15 40; -fx-background-color: #757575; -fx-text-fill: white; -fx-font-size: 16px;"
+                    maxWidth="Infinity"/>
+        </VBox>
+        
+    </VBox>
+    
+    <!-- Vista 3: Resumen de pago -->
+    <VBox fx:id="resumenPagoView" spacing="20" alignment="CENTER" style="-fx-padding: 30; -fx-background-color: white;" maxWidth="600" visible="false">
+        
+        <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #757575; -fx-padding: 30; -fx-background-radius: 10 10 0 0;" maxWidth="Infinity">
+            <Label text="Pagar" style="-fx-text-fill: white; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+        </VBox>
+        
+        <VBox spacing="15" style="-fx-padding: 30;">
+            <Label text="Resumen del Pago" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            
+            <GridPane hgap="20" vgap="10">
+                <Label text="Donación:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblDonacionTipo" text="Descripción: Alimento" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Valor (Cantidad):" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblDonacionCantidad" text="Descripción: 0000 kg" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="Entrega:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblEntregaTipo" text="Descripción: Envío" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                
+                <Label text="Pago:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+                <Label text="Descripción: Virtual" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            </GridPane>
+            
+            <Separator/>
+            
+            <GridPane hgap="20" vgap="10">
+                <Label text="Titular" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblTitularResumen" text="Rodolfo Rivera" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Número de la Tarjeta" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblTarjetaResumen" text="XXX XXXX XXX" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="Expiración" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                <Label fx:id="lblExpiracionResumen" text="00/0000" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                
+                <Label text="CVV" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+                <Label text="00000" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            </GridPane>
+            
+            <VBox spacing="5" style="-fx-background-color: #F5F5F5; -fx-padding: 15; -fx-background-radius: 5;">
+                <Label text="Correo:" style="-fx-font-weight: bold;"/>
+                <Label text="juan.perez@gmail.com"/>
+                <Label text="Dirección:" style="-fx-font-weight: bold; -fx-padding: 10 0 0 0;"/>
+                <Label text="Fundación Garras y Bigotes"/>
+            </VBox>
+            
+            <VBox spacing="5" alignment="TOP_RIGHT">
+                <HBox spacing="30">
+                    <Label text="IVA"/>
+                    <Label text="19%"/>
+                </HBox>
+                <HBox spacing="30">
+                    <Label text="Envío"/>
+                    <Label text="$ 12000"/>
+                </HBox>
+                <Separator/>
+                <HBox spacing="30">
+                    <Label text="TOTAL" style="-fx-font-weight: bold;"/>
+                    <Label fx:id="lblTotalFinal" text="$ 00000" style="-fx-font-weight: bold;"/>
+                </HBox>
+            </VBox>
+            
+            <VBox alignment="CENTER" spacing="5" style="-fx-padding: 20 0;">
+                <Label text="Monto total" style="-fx-font-size: 16px;"/>
+                <Label fx:id="lblMontoTotalResumen" text="$00000 COP" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            </VBox>
+            
+            <Button text="Pagar ahora 🔒" onAction="#confirmarPago" 
+                    style="-fx-padding: 15 40; -fx-background-color: #757575; -fx-text-fill: white; -fx-font-size: 16px;"
+                    maxWidth="Infinity"/>
+        </VBox>
+        
+    </VBox>
+    
+</StackPane>

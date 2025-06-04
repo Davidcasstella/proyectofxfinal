@@ -402,4 +402,5 @@ public class ControladorDashboard {
     private void Antesssss() throws IOException {
         App.setRoot("PantallaCreaTuContraseña");
     }
+    
 }

@@ -64,16 +64,5 @@
     "estado": "Pendiente",
     "fechaAsignacion": "2025-05-31",
     "monto": 1.0
-  },
-  {
-    "id": 7,
-    "donanteId": 10,
-    "animalId": 4,
-    "donante": "pepe",
-    "animal": "Lucas (Gato)",
-    "recurso": "222",
-    "estado": "Pendiente",
-    "fechaAsignacion": "2025-05-31",
-    "monto": 200.0
   }
 ]

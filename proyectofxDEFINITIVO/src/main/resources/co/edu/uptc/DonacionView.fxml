@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.collections.*?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="co.edu.uptc.controlador.DonacionController"
+      style="-fx-padding: 30; -fx-background-color: white;"
+      alignment="CENTER" maxWidth="500">
+    
+    <Label text="Continúa con la Donación" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    
+    <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #F5F5F5; -fx-background-radius: 5;">
+        
+        <VBox spacing="5">
+            <Label text="Tipo de donación que desea realizar" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="cmbTipoDonacion" prefWidth="400" promptText="Seleccione el tipo"/>
+        </VBox>
+        
+        <VBox spacing="5">
+            <Label text="Método de entrega" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="cmbMetodoEntrega" prefWidth="400" promptText="Seleccione el método"/>
+        </VBox>
+        
+        <VBox spacing="5">
+            <Label text="Cantidad" style="-fx-font-weight: bold;"/>
+            <TextField fx:id="txtCantidad" promptText="Ingrese la cantidad (unidades o valor en COP)"/>
+        </VBox>
+        
+        <VBox spacing="5">
+            <Label text="Descripción (opcional)" style="-fx-font-weight: bold;"/>
+            <TextArea fx:id="txtDescripcion" prefRowCount="3" promptText="Agregue detalles adicionales sobre su donación"/>
+        </VBox>
+        
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label fx:id="lblAnimalNombre" text="Max" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+            <ImageView fx:id="imgAnimal" fitHeight="60" fitWidth="60" preserveRatio="true"/>
+        </HBox>
+        
+    </VBox>
+    
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Cancelar" onAction="#handleCancelar" 
+                style="-fx-padding: 10 30; -fx-background-color: #E0E0E0;"/>
+        <Button text="Continuar" onAction="#handleContinuar" 
+                style="-fx-padding: 10 30; -fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    </HBox>
+    
+</VBox>
