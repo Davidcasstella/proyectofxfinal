@@ -16,5 +16,11 @@
     "email": "andrea@gmail.com",
     "password": "andrea987",
     "correoRecuperacion": "andrea1@gmail.com"
+  },
+  {
+    "nombreCompleto": "david lopez castellanos",
+    "email": "amicopdavid2@gmail.com",
+    "password": "david23315",
+    "correoRecuperacion": "amicopdavid1@gmail.com"
   }
 ]
